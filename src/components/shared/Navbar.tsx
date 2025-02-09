@@ -3,7 +3,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Navbar = () => {
+
+type UserProps = {
+    user?: {
+        name?: string | null | undefined;
+        email?: string | null | undefined;
+        image?: string | null | undefined
+    }
+}
+
+const Navbar = ({ session }: { session: UserProps | null }) => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
 
