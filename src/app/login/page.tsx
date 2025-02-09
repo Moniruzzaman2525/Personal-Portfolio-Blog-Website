@@ -57,7 +57,9 @@ const LoginPage = () => {
                 </div>
 
                 <div className="flex flex-col space-y-4">
-                    <button className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition">
+                    <button onClick={() => signIn('google', {
+                        callbackUrl: 'http://localhost:3000/dashboard'
+                    })} className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition">
                         <FcGoogle className="text-2xl mr-3" />
                         <span className="text-gray-700 font-medium">Continue with Google</span>
                     </button>
