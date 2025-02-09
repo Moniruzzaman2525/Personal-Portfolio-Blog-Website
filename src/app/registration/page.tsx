@@ -1,9 +1,9 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 const SignupPage = () => {
     return (
@@ -64,13 +64,6 @@ const SignupPage = () => {
                         <span className="text-gray-700 font-medium">Sign Up with Google</span>
                     </button>
                     <button
-                        onClick={() => signIn("facebook")}
-                        className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-[#1877F2]"
-                    >
-                        <FaFacebook className="text-2xl mr-3" />
-                        <span className="font-medium">Sign Up with Facebook</span>
-                    </button>
-                    <button
                         onClick={() => signIn("github")}
                         className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-gray-900"
                     >
@@ -80,9 +73,9 @@ const SignupPage = () => {
                 </div>
                 <p className="text-gray-600 text-center mt-6">
                     Already have an account?{" "}
-                    <a href="/login" className="text-[#1e16df] font-medium hover:underline">
+                    <Link href="/login" className="text-[#1e16df] font-medium hover:underline">
                         Login
-                    </a>
+                    </Link>
                 </p>
             </motion.div>
         </section>
