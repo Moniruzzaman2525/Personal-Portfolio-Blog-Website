@@ -57,7 +57,7 @@ const HeroSection = () => {
                     >
                         <a
                             href="#contact"
-                            className="inline-block px-6 py-3 bg-[#3830cf] text-white font-medium text-lg rounded-lg shadow-md hover:bg-[#1e16df] transition duration-300"
+                            className="inline-block px-6 py-3 bg-[#1e16df] text-white font-medium text-lg rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300"
                         >
                             Contact Me
                         </a>
