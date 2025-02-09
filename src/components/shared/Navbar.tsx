@@ -20,7 +20,6 @@ const Navbar = () => {
                     <Link href="/" className={isActive("/")}>Home</Link>
                     <Link href="/projects" className={isActive("/projects")}>Projects</Link>
                     <Link href="/blog" className={isActive("/blog")}>Blog</Link>
-                    <Link href="/about" className={isActive("/about")}>About</Link>
                     <Link href="/contact" className={isActive("/contact")}>Contact</Link>
                     <Link href="/login" className={isActive("/login")}>Login</Link>
                 </div>
@@ -38,7 +37,6 @@ const Navbar = () => {
                     <Link href="/" className={`block py-2 ${isActive("/")}`} onClick={() => setIsOpen(false)}>Home</Link>
                     <Link href="/projects" className={`block py-2 ${isActive("/projects")}`} onClick={() => setIsOpen(false)}>Projects</Link>
                     <Link href="/blog" className={`block py-2 ${isActive("/blog")}`} onClick={() => setIsOpen(false)}>Blog</Link>
-                    <Link href="/about" className={`block py-2 ${isActive("/about")}`} onClick={() => setIsOpen(false)}>About</Link>
                     <Link href="/contact" className={`block py-2 ${isActive("/contact")}`} onClick={() => setIsOpen(false)}>Contact</Link>
                     <Link href="/login" className={`block py-2 ${isActive("/login")}`} onClick={() => setIsOpen(false)}>Login</Link>
                 </div>
