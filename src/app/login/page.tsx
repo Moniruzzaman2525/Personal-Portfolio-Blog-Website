@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaGithub } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
 const LoginPage = () => {
     return (
@@ -64,7 +65,9 @@ const LoginPage = () => {
                         <FaFacebook className="text-2xl mr-3" />
                         <span className="font-medium">Continue with Facebook</span>
                     </button>
-                    <button className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-gray-900">
+                    <button onClick={() => signIn('github', {
+                        callbackUrl: 'http://localhost:3000'
+                    })} className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-gray-900">
                         <FaGithub className="text-2xl mr-3" />
                         <span className="font-medium">Continue with GitHub</span>
                     </button>
