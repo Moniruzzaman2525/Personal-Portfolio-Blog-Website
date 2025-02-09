@@ -58,9 +58,8 @@ const projects = [
 const ProjectsPage = () => {
     return (
         <section className="relative w-full bg-[#fbfbfe] py-16 px-6 md:px-12 lg:px-24">
-            <div className="max-w-6xl mx-auto">
+            <div className=" mx-auto">
 
-                {/* Section Title */}
                 <motion.h2
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
