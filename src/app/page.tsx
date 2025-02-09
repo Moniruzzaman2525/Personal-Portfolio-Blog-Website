@@ -1,7 +1,11 @@
+import Profile from "@/components/Profile";
+import SkillSection from "@/components/SkillSection";
+
 export default function Home() {
   return (
     <div>
-      Hello world
+      <Profile />
+      <SkillSection />
     </div>
   );
 }
