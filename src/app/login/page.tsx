@@ -61,12 +61,14 @@ const LoginPage = () => {
                         <FcGoogle className="text-2xl mr-3" />
                         <span className="text-gray-700 font-medium">Continue with Google</span>
                     </button>
-                    <button className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-[#1877F2]">
+                    <button onClick={() => signIn('facebook', {
+                        callbackUrl: 'http://localhost:3000/dashboard'
+                    })} className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-[#1877F2]">
                         <FaFacebook className="text-2xl mr-3" />
                         <span className="font-medium">Continue with Facebook</span>
                     </button>
                     <button onClick={() => signIn('github', {
-                        callbackUrl: 'http://localhost:3000'
+                        callbackUrl: 'http://localhost:3000/dashboard'
                     })} className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-gray-900">
                         <FaGithub className="text-2xl mr-3" />
                         <span className="font-medium">Continue with GitHub</span>
