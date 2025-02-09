@@ -45,7 +45,7 @@ const HeroSection = () => {
                     </p>
 
                     <div className="mt-6 space-y-2">
-                        <p className="text-gray-700 font-medium">📍 <span className="font-semibold">Location:</span> Dhaka, Bangladesh</p>
+                        <p className="text-gray-700 font-medium">📍 <span className="font-semibold">Location:</span> Sherpur, Dhaka, Bangladesh</p>
                         <p className="text-gray-700 font-medium">📧 <span className="font-semibold">Email:</span> <a href="mailto:monir@example.com" className="text-[#1e16df] hover:underline">web.moniruzzaman1@gmail.com</a></p>
                         <p className="text-gray-700 font-medium">🌐 <span className="font-semibold">Website:</span> <a href="web.moniruzzaman1@gmail.com" className="text-[#1e16df] hover:underline">www.moniruzzaman.dev</a></p>
                     </div>
@@ -53,7 +53,7 @@ const HeroSection = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="mt-6"
+                        className="mt-6 flex flex-wrap gap-4"
                     >
                         <a
                             href="#contact"
@@ -61,7 +61,15 @@ const HeroSection = () => {
                         >
                             Contact Me
                         </a>
+                        <a
+                            href="/resume.pdf"
+                            download="Md_Moniruzzaman_Resume.pdf"
+                            className="inline-block px-6 py-3 bg-[#1e16df] text-white font-medium text-lg rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300"
+                        >
+                            📄 Download Resume
+                        </a>
                     </motion.div>
+
                 </motion.div>
 
             </div>
