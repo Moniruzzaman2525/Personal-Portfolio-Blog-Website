@@ -5,8 +5,15 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import PPForm from "@/components/form/PPForm";
+import PPInput from "@/components/form/PPInput";
+import { FieldValues } from "react-hook-form";
 
 const LoginPage = () => {
+    const handleLogin = (data: FieldValues) => {
+        console.log("Login Data:", data);
+    };
+
     return (
         <section className="flex justify-center items-center min-h-screen bg-[#fbfbfe] px-6 md:px-12">
             <motion.div
@@ -17,29 +24,14 @@ const LoginPage = () => {
             >
                 <h2 className="text-3xl font-extrabold text-gray-900 text-center">Welcome Back</h2>
                 <p className="text-gray-600 text-center mt-2">Login to your account</p>
-
-                <form className="mt-6">
-                    <div>
-                        <label className="block text-gray-700 font-medium">Email</label>
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="block text-gray-700 font-medium">Password</label>
-                        <input
-                            type="password"
-                            placeholder="Enter your password"
-                            className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
-                        />
-                    </div>
+                <PPForm onSubmit={handleLogin} style={{ marginTop: "24px" }}>
+                    <PPInput type="email" name="email" label="Email" placeholder="Enter your email" />
+                    <PPInput type="password" name="password" label="Password" placeholder="Enter your password" />
 
                     <div className="flex justify-end mt-2">
-                        <a href="#" className="text-[#1e16df] text-sm hover:underline">
+                        <Link href="#" className="text-[#1e16df] text-sm hover:underline">
                             Forgot password?
-                        </a>
+                        </Link>
                     </div>
 
                     <motion.button
@@ -49,24 +41,24 @@ const LoginPage = () => {
                     >
                         Login
                     </motion.button>
-                </form>
-
+                </PPForm>
                 <div className="flex items-center my-6">
                     <div className="flex-grow border-t border-gray-300"></div>
                     <span className="px-4 text-gray-500 text-sm">OR</span>
                     <div className="flex-grow border-t border-gray-300"></div>
                 </div>
-
                 <div className="flex flex-col space-y-4">
-                    <button onClick={() => signIn('google', {
-                        callbackUrl: 'http://localhost:3000/dashboard'
-                    })} className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition">
+                    <button
+                        onClick={() => signIn("google", { callbackUrl: "http://localhost:3000/dashboard" })}
+                        className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition"
+                    >
                         <FcGoogle className="text-2xl mr-3" />
                         <span className="text-gray-700 font-medium">Continue with Google</span>
                     </button>
-                    <button onClick={() => signIn('github', {
-                        callbackUrl: 'http://localhost:3000/dashboard'
-                    })} className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-gray-900">
+                    <button
+                        onClick={() => signIn("github", { callbackUrl: "http://localhost:3000/dashboard" })}
+                        className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white hover:bg-gray-100 transition text-gray-900"
+                    >
                         <FaGithub className="text-2xl mr-3" />
                         <span className="font-medium">Continue with GitHub</span>
                     </button>

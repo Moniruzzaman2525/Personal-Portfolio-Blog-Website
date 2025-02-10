@@ -14,7 +14,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
         <div className="flex min-h-screen bg-gray-100">
             <aside className={`fixed md:relative h-screen bg-white shadow-lg transition-all duration-300 p-4 z-50 md:w-64 w-16 ${isMobileMenuOpen ? "block" : "hidden"} md:block`}>
                 <div className="flex items-center justify-between">
-                    <h1 className="md:block hidden text-xl font-bold">Dashboard</h1>
+                    <Link href='/'><h1 className="md:block hidden text-xl font-bold">Portfolio</h1></Link>
                     <button className="p-2 rounded-lg bg-gray-200 hover:bg-gray-300 md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         <Menu className="h-5 w-5" />
                     </button>
@@ -31,8 +31,8 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
                     </button>
                     {isBlogsOpen && (
                         <div className="ml-6 space-y-2">
-                            <NavItem href="/blogs/create" icon={FilePlus2} label="Create Blog" />
-                            <NavItem href="/blogs/lists" icon={List} label="List Blogs" />
+                            <NavItem href="/dashboard/blogs/create" icon={FilePlus2} label="Create Blog" />
+                            <NavItem href="/dashboard/blogs" icon={List} label="List Blogs" />
                         </div>
                     )}
                     <button onClick={() => setIsProjectsOpen(!isProjectsOpen)} className="flex justify-between items-center w-full p-2 rounded-lg hover:bg-gray-200 cursor-pointer">
@@ -44,12 +44,12 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
                     </button>
                     {isProjectsOpen && (
                         <div className="ml-6 space-y-2">
-                            <NavItem href="/projects/create" icon={FilePlus2} label="Create Project" />
-                            <NavItem href="/projects/lists" icon={List} label="List Projects" />
+                            <NavItem href="/dashboard/projects/create" icon={FilePlus2} label="Create Project" />
+                            <NavItem href="/dashboard/projects" icon={List} label="List Projects" />
                         </div>
                     )}
 
-                    <NavItem href="/messages" icon={MessageCircle} label="Message Management" />
+                    <NavItem href="/dashboard/messages" icon={MessageCircle} label="Message Management" />
                 </nav>
             </aside>
 

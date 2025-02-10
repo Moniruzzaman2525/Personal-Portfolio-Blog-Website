@@ -21,9 +21,9 @@ const ContactPage = () => {
                         <p className="text-white font-medium">🌐 <span className="font-semibold">Website:</span> <a href="https://www.moniruzzaman.dev" className="hover:underline">www.moniruzzaman.dev</a></p>
                     </div>
                     <div className="mt-6 flex space-x-6 text-xl">
-                        <a href="#" className="text-white hover:text-gray-300 transition">🔗 LinkedIn</a>
-                        <a href="#" className="text-white hover:text-gray-300 transition">🐦 Twitter</a>
-                        <a href="#" className="text-white hover:text-gray-300 transition">📘 Facebook</a>
+                        <a target="_blank" href="https://www.linkedin.com/in/moniruzzaman25/" className="text-white hover:text-gray-300 transition">🔗 LinkedIn</a>
+                        <a target="_blank" href="https://x.com/Monir8699" className="text-white hover:text-gray-300 transition">🐦 Twitter</a>
+                        <a target="_blank" href="https://www.facebook.com/moniruzzaman255" className="text-white hover:text-gray-300 transition">📘 Facebook</a>
                     </div>
                 </motion.div>
                 <motion.div

@@ -24,7 +24,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
         <nav className="bg-white shadow-md py-4 px-6 fixed top-0 w-full z-50">
             <div className="container mx-auto flex justify-between items-center">
                 <Link href="/" className={`text-2xl font-extrabold text-[#1e16df]`}>
-                    MyPortfolio
+                    Portfolio
                 </Link>
                 <div className="hidden md:flex space-x-6">
                     <Link href="/" className={isActive("/")}>Home</Link>

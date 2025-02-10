@@ -24,12 +24,15 @@ const BlogForm = ({ onAddBlog }: BlogFormProps) => {
             <h3 className="text-xl font-semibold mb-4">Create a New Blog</h3>
             <PPInput type="text" name="title" label="Title" placeholder="Enter blog title" />
             <PPTextarea name="content" label="Content" placeholder="Write your blog content here..." rows={4} />
-            <PPInput type="text" name="image" label="Image URL" placeholder="Enter image URL (optional)" />
+            <PPInput type="text" name="image" label="Image URL" placeholder="Enter image URL" />
             <PPSelect
                 name="category"
                 label="Category"
                 options={categoryOption}
             />
+            <button type="submit" className="inline-block px-6 py-3 bg-[#1e16df] text-white font-medium text-lg rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300">
+                Submit
+            </button>
         </PPForm>
     );
 };

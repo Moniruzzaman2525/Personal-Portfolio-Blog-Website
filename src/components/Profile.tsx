@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import profileImage from "@/assets/profile.jpg";
+import Link from "next/link";
 
 const HeroSection = () => {
     return (
@@ -55,12 +56,12 @@ const HeroSection = () => {
                         transition={{ duration: 0.8, delay: 0.6 }}
                         className="mt-6 flex flex-wrap gap-4"
                     >
-                        <a
-                            href="#contact"
+                        <Link
+                            href="/contact"
                             className="inline-block px-6 py-3 bg-[#1e16df] text-white font-medium text-lg rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300"
                         >
                             Contact Me
-                        </a>
+                        </Link>
                         <a
                             href="/resume.pdf"
                             download="Md_Moniruzzaman_Resume.pdf"

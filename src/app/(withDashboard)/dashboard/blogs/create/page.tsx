@@ -10,7 +10,6 @@ export default function BlogManagementPage() {
 
     return (
         <div>
-            <h2 className="text-2xl font-semibold text-center mb-4">Blog Management</h2>
             <BlogForm onAddBlog={handleAddBlog} />
         </div>
     );

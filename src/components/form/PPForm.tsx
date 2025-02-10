@@ -35,9 +35,7 @@ const PPForm = ({ onSubmit, children, defaultValues, resolver, style }: TFormPro
         <FormProvider {...methods}>
             <form style={style} className="space-y-4" onSubmit={methods.handleSubmit(onSubmitHandler)}>
                 {children}
-                <button type="submit" className="inline-block px-6 py-3 bg-[#1e16df] text-white font-medium text-lg rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300">
-                    Submit
-                </button>
+
             </form>
         </FormProvider>
     );
