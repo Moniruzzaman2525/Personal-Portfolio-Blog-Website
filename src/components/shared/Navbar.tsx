@@ -29,7 +29,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                 <div className="hidden md:flex space-x-6">
                     <Link href="/" className={isActive("/")}>Home</Link>
                     <Link href="/projects" className={isActive("/projects")}>Projects</Link>
-                    <Link href="/blog" className={isActive("/blog")}>Blog</Link>
+                    <Link href="/blogs" className={isActive("/blog")}>Blog</Link>
                     <Link href="/contact" className={isActive("/contact")}>Contact</Link>
                     <Link href="/dashboard" className={isActive("/dashboard")}>Dashboard</Link>
                     {session?.user ? <button onClick={() => signOut()} className={isActive("/login")}>Logout</button> :
@@ -48,7 +48,7 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                 <div className="md:hidden bg-white shadow-md py-4 px-6 absolute top-16 left-0 w-full">
                     <Link href="/" className={`block py-2 ${isActive("/")}`} onClick={() => setIsOpen(false)}>Home</Link>
                     <Link href="/projects" className={`block py-2 ${isActive("/projects")}`} onClick={() => setIsOpen(false)}>Projects</Link>
-                    <Link href="/blog" className={`block py-2 ${isActive("/blog")}`} onClick={() => setIsOpen(false)}>Blog</Link>
+                    <Link href="/blogs" className={`block py-2 ${isActive("/blog")}`} onClick={() => setIsOpen(false)}>Blog</Link>
                     <Link href="/contact" className={`block py-2 ${isActive("/contact")}`} onClick={() => setIsOpen(false)}>Contact</Link>
                     <Link href="/dashboard" className={`block py-2 ${isActive("/dashboard")}`} onClick={() => setIsOpen(false)}>Dashboard</Link>
                     {session?.user ? <button onClick={() => signOut()} className={isActive("/login")}>Logout</button> :
