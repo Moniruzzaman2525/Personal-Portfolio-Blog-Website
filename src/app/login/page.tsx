@@ -23,7 +23,7 @@ const LoginPage = () => {
                 className="bg-white p-8 rounded-xl shadow-lg border border-gray-200 max-w-md w-full"
             >
                 <h2 className="text-3xl font-extrabold text-gray-900 text-center">Welcome Back</h2>
-                <p className="text-gray-600 text-center mt-2">Login to your account</p>
+                <p className="text-gray-600 text-center mt-2">Sign in to your account</p>
                 <PPForm onSubmit={handleLogin} style={{ marginTop: "24px" }}>
                     <PPInput type="email" name="email" label="Email" placeholder="Enter your email" />
                     <PPInput type="password" name="password" label="Password" placeholder="Enter your password" />
@@ -39,7 +39,7 @@ const LoginPage = () => {
                         whileTap={{ scale: 0.95 }}
                         className="mt-6 w-full bg-[#1e16df] text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300"
                     >
-                        Login
+                        Sign In
                     </motion.button>
                 </PPForm>
                 <div className="flex items-center my-6">

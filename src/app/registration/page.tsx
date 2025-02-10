@@ -63,7 +63,7 @@ const SignupPage = () => {
                 <p className="text-gray-600 text-center mt-6">
                     Already have an account?{" "}
                     <Link href="/login" className="text-[#1e16df] font-medium hover:underline">
-                        Login
+                        Sign In
                     </Link>
                 </p>
             </motion.div>
