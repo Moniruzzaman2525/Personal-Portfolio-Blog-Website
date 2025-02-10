@@ -1,18 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FieldValues } from "react-hook-form";
+import { Loader2 } from "lucide-react";
 import PPForm from "@/components/form/PPForm";
 import PPInput from "@/components/form/PPInput";
 
 const SignupPage = () => {
-    const handleSignup = async (data: FieldValues) => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
+    const handleSignup = async (data: FieldValues) => {
+        setLoading(true);
+        setError(null);
         try {
             const response = await fetch("http://localhost:5000/api/auth/register", {
                 method: "POST",
@@ -22,22 +28,20 @@ const SignupPage = () => {
                 },
                 body: JSON.stringify(data),
             });
-
             const result = await response.json();
-
             if (!response.ok) {
                 throw new Error(result.message || "Signup failed");
             }
-
             if (result.success && result.data?.token) {
                 localStorage.setItem("authToken", result.data.token);
             }
         } catch (err: any) {
-            console.log(err)
+            setError(err.message);
         } finally {
-
+            setLoading(false);
         }
     };
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-[#fbfbfe] px-6 md:px-12">
             <motion.div
@@ -49,24 +53,30 @@ const SignupPage = () => {
                 <h2 className="text-3xl font-extrabold text-gray-900 text-center">Create an Account</h2>
                 <p className="text-gray-600 text-center mt-2">Sign up to get started</p>
 
+                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+
                 <PPForm onSubmit={handleSignup} style={{ marginTop: "24px" }}>
                     <PPInput type="text" name="name" label="Full Name" placeholder="Enter your name" />
                     <PPInput type="email" name="email" label="Email" placeholder="Enter your email" />
                     <PPInput type="password" name="password" label="Password" placeholder="Create a password" />
 
                     <motion.button
+                        type="submit"
+                        disabled={loading}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-6 w-full bg-[#1e16df] text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300"
+                        className={`mt-6 w-full text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md transition duration-300 ${loading ? "bg-gray-400" : "bg-[#1e16df] hover:bg-[#3830cf]"}`}
                     >
-                        Sign Up
+                        {loading ? <Loader2 className="animate-spin mx-auto" /> : "Sign Up"}
                     </motion.button>
                 </PPForm>
+
                 <div className="flex items-center my-6">
                     <div className="flex-grow border-t border-gray-300"></div>
                     <span className="px-4 text-gray-500 text-sm">OR</span>
                     <div className="flex-grow border-t border-gray-300"></div>
                 </div>
+
                 <div className="flex flex-col space-y-4">
                     <button
                         onClick={() => signIn("google")}
@@ -85,7 +95,7 @@ const SignupPage = () => {
                 </div>
 
                 <p className="text-gray-600 text-center mt-6">
-                    Already have an account?{" "}
+                    Already have an account? {" "}
                     <Link href="/login" className="text-[#1e16df] font-medium hover:underline">
                         Sign In
                     </Link>
