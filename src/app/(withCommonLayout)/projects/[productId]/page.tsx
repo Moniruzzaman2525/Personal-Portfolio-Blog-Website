@@ -6,7 +6,7 @@ type ProductDetailsProps = {
 };
 
 const ProductDetails = async ({ params }: ProductDetailsProps) => {
-    const productId = await params.productId
+    const { productId } = await params
     console.log(productId)
     return (
         <div>
