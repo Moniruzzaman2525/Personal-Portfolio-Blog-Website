@@ -1,11 +1,19 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { FieldValues } from "react-hook-form";
+import PPForm from "@/components/form/PPForm";
+import PPInput from "@/components/form/PPInput";
 
 const SignupPage = () => {
+    const handleSignup = (data: FieldValues) => {
+        console.log("Signup Data:", data);
+    };
+
     return (
         <section className="flex justify-center items-center min-h-screen bg-[#fbfbfe] px-6 md:px-12">
             <motion.div
@@ -17,31 +25,11 @@ const SignupPage = () => {
                 <h2 className="text-3xl font-extrabold text-gray-900 text-center">Create an Account</h2>
                 <p className="text-gray-600 text-center mt-2">Sign up to get started</p>
 
-                <form className="mt-6">
-                    <div>
-                        <label className="block text-gray-700 font-medium">Full Name</label>
-                        <input
-                            type="text"
-                            placeholder="Enter your name"
-                            className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="block text-gray-700 font-medium">Email</label>
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="block text-gray-700 font-medium">Password</label>
-                        <input
-                            type="password"
-                            placeholder="Create a password"
-                            className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
-                        />
-                    </div>
+                <PPForm onSubmit={handleSignup} style={{ marginTop: "24px" }}>
+                    <PPInput type="text" name="fullName" label="Full Name" placeholder="Enter your name" />
+                    <PPInput type="email" name="email" label="Email" placeholder="Enter your email" />
+                    <PPInput type="password" name="password" label="Password" placeholder="Create a password" />
+
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -49,7 +37,7 @@ const SignupPage = () => {
                     >
                         Sign Up
                     </motion.button>
-                </form>
+                </PPForm>
                 <div className="flex items-center my-6">
                     <div className="flex-grow border-t border-gray-300"></div>
                     <span className="px-4 text-gray-500 text-sm">OR</span>
@@ -71,6 +59,7 @@ const SignupPage = () => {
                         <span className="font-medium">Sign Up with GitHub</span>
                     </button>
                 </div>
+
                 <p className="text-gray-600 text-center mt-6">
                     Already have an account?{" "}
                     <Link href="/login" className="text-[#1e16df] font-medium hover:underline">
