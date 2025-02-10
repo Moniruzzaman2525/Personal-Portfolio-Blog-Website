@@ -1,11 +1,11 @@
 import React from 'react';
 
-const page = () => {
+const MessagePage = () => {
     return (
         <div>
-            Dashboard
+            Message
         </div>
     );
 };
 
-export default page;
+export default MessagePage;
