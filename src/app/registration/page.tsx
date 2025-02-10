@@ -11,10 +11,12 @@ import { FieldValues } from "react-hook-form";
 import { Loader2 } from "lucide-react";
 import PPForm from "@/components/form/PPForm";
 import PPInput from "@/components/form/PPInput";
+import { useRouter } from "next/navigation";
 
 const SignupPage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const router = useRouter()
 
     const handleSignup = async (data: FieldValues) => {
         setLoading(true);
@@ -33,6 +35,7 @@ const SignupPage = () => {
                 throw new Error(result.message || "Signup failed");
             }
             if (result.success && result.data?.token) {
+                router.push('/')
                 localStorage.setItem("authToken", result.data.token);
             }
         } catch (err: any) {
