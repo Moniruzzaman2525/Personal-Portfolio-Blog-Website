@@ -10,9 +10,10 @@ type TPHSelectForm = {
     }[];
     disabled?: boolean;
     mode?: "multiple" | undefined;
+    required?: boolean
 };
 
-export const PPSelect = ({ label, name, options, disabled, mode }: TPHSelectForm) => {
+export const PPSelect = ({ label, name, options, disabled, mode, required }: TPHSelectForm) => {
     return (
         <Controller
             name={name}
@@ -22,6 +23,7 @@ export const PPSelect = ({ label, name, options, disabled, mode }: TPHSelectForm
                     <select
                         {...field}
                         id={name}
+                        required={required}
                         multiple={mode === "multiple"}
                         disabled={disabled}
                         className={`w-full border p-2 rounded-md ${error ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-blue-500`}
