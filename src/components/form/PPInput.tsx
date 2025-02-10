@@ -14,6 +14,7 @@ const PPInput = ({ type, name, label, placeholder, style, disabled, suffix }: TI
     return (
         <Controller
             name={name}
+            defaultValue=""
             render={({ field, fieldState: { error } }) => (
                 <div className="mb-4">
                     {label && <label htmlFor={name} className="block text-gray-700 font-medium mb-1">{label}</label>}
@@ -22,6 +23,7 @@ const PPInput = ({ type, name, label, placeholder, style, disabled, suffix }: TI
                             type={type}
                             id={name}
                             {...field}
+                            value={field.value ?? ""}
                             placeholder={placeholder}
                             disabled={disabled}
                             style={style}

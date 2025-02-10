@@ -15,7 +15,7 @@ const LoginPage = () => {
     };
 
     return (
-        <section className="flex justify-center items-center min-h-screen bg-[#fbfbfe] px-6 md:px-12">
+        <div className="flex justify-center items-center min-h-screen bg-[#fbfbfe] px-6 md:px-12">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ const LoginPage = () => {
                     </Link>
                 </p>
             </motion.div>
-        </section>
+        </div>
     );
 };
 

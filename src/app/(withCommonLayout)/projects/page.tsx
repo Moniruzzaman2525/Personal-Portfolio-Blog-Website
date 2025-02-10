@@ -5,55 +5,36 @@ const projects = [
         title: "Portfolio Website",
         description: "A personal portfolio built with Next.js and Tailwind CSS.",
         image: "/projects/portfolio.jpg",
-        id: "1",
+        _id: "1",
     },
     {
         title: "E-Commerce App",
         description: "An e-commerce platform with a beautiful UI and API integration.",
         image: "/projects/ecommerce.jpg",
-        id: "2",
+        _id: "2",
     },
     {
         title: "AI Chatbot",
         description: "A smart AI-powered chatbot using Next.js and OpenAI API.",
         image: "/projects/ai-chatbot.jpg",
-        id: "3",
+        _id: "3",
     },
     {
         title: "Task Management App",
         description: "A full-stack task manager with user authentication and real-time updates.",
         image: "/projects/task-manager.jpg",
-        id: "4",
+        _id: "4",
     },
-    {
-        title: "Finance Dashboard",
-        description: "A data visualization dashboard for tracking financial statistics.",
-        image: "/projects/finance-dashboard.jpg",
-        id: "5",
-    },
-    {
-        title: "Social Media App",
-        description: "A React-based social media platform with real-time messaging.",
-        image: "/projects/social-media.jpg",
-        id: "6",
-    },
-    {
-        title: "Weather App",
-        description: "A dynamic weather app with API integration for real-time updates.",
-        image: "/projects/weather-app.jpg",
-        id: "7",
-    },
-    {
-        title: "Booking System",
-        description: "An online booking system for hotel reservations.",
-        image: "/projects/booking.jpg",
-        id: "8",
-    },
+
 ];
 
-const ProjectsPage = () => {
+const ProjectsPage = async () => {
+
+    const res = await fetch('http://localhost:5000/api/products')
+    console.log(await res.json())
+
     return (
-        <section className="relative w-full bg-[#fbfbfe] py-16 px-6 md:px-12 lg:px-24">
+        <div className="relative w-full bg-[#fbfbfe] py-16 px-6 md:px-12 lg:px-24">
             <div className=" mx-auto">
 
                 {/* <motion.h2
@@ -88,7 +69,7 @@ const ProjectsPage = () => {
                     ))}
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

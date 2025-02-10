@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface Project {
-    id: string | number;
+    _id: string | number;
     image: string;
     title: string;
     description: string;
@@ -28,8 +28,8 @@ const ProductCart = ({ project, index }: ProductCartProps) => {
             >
                 <div className="relative w-full h-40">
                     <Image
-                        src={project.image}
-                        alt={project.title}
+                        src={project?.image}
+                        alt={project?.title}
                         layout="fill"
                         objectFit="cover"
                         className="rounded-t-xl"
@@ -37,10 +37,10 @@ const ProductCart = ({ project, index }: ProductCartProps) => {
                 </div>
 
                 <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-semibold text-gray-900">{project.title}</h3>
-                    <p className="text-gray-600 mt-2 flex-grow">{project.description}</p>
+                    <h3 className="text-xl font-semibold text-gray-900">{project?.title}</h3>
+                    <p className="text-gray-600 mt-2 flex-grow">{project?.description}</p>
                     <Link
-                        href={`/projects/${project.id}`}
+                        href={`/projects/${project?._id}`}
                         className="mt-4 inline-block text-[#1e16df] font-medium hover:underline"
                     >
                         View Project →

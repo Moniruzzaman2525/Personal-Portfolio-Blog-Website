@@ -15,7 +15,7 @@ const skills = [
 
 const SkillSection = () => {
     return (
-        <section className="relative w-full bg-white py-16 px-6 md:px-12 lg:px-24">
+        <div className="relative w-full bg-white py-16 px-6 md:px-12 lg:px-24">
             <div className=" mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: -20 }}
@@ -59,7 +59,7 @@ const SkillSection = () => {
                     ))}
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const HeroSection = () => {
     return (
-        <section className="relative w-full bg-[#fbfbfe] py-16 px-6 md:px-12 lg:px-24">
+        <div className="relative w-full bg-[#fbfbfe] py-16 px-6 md:px-12 lg:px-24">
             <div className=" mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -74,7 +74,7 @@ const HeroSection = () => {
                 </motion.div>
 
             </div>
-        </section>
+        </div>
     );
 };
 

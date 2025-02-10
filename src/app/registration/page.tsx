@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { motion } from "framer-motion";
@@ -10,12 +11,35 @@ import PPForm from "@/components/form/PPForm";
 import PPInput from "@/components/form/PPInput";
 
 const SignupPage = () => {
-    const handleSignup = (data: FieldValues) => {
-        console.log("Signup Data:", data);
-    };
+    const handleSignup = async (data: FieldValues) => {
 
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || "Signup failed");
+            }
+
+            if (result.success && result.data?.token) {
+                localStorage.setItem("authToken", result.data.token);
+            }
+        } catch (err: any) {
+            console.log(err)
+        } finally {
+
+        }
+    };
     return (
-        <section className="flex justify-center items-center min-h-screen bg-[#fbfbfe] px-6 md:px-12">
+        <div className="flex justify-center items-center min-h-screen bg-[#fbfbfe] px-6 md:px-12">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -26,7 +50,7 @@ const SignupPage = () => {
                 <p className="text-gray-600 text-center mt-2">Sign up to get started</p>
 
                 <PPForm onSubmit={handleSignup} style={{ marginTop: "24px" }}>
-                    <PPInput type="text" name="fullName" label="Full Name" placeholder="Enter your name" />
+                    <PPInput type="text" name="name" label="Full Name" placeholder="Enter your name" />
                     <PPInput type="email" name="email" label="Email" placeholder="Enter your email" />
                     <PPInput type="password" name="password" label="Password" placeholder="Create a password" />
 
@@ -67,7 +91,7 @@ const SignupPage = () => {
                     </Link>
                 </p>
             </motion.div>
-        </section>
+        </div>
     );
 };
 

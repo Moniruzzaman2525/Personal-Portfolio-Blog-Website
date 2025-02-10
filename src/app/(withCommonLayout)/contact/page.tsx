@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ContactPage = () => {
     return (
-        <section className="relative w-full bg-white py-16 px-6 md:px-12 lg:px-24">
+        <div className="relative w-full bg-white py-16 px-6 md:px-12 lg:px-24">
             <div className=" mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
@@ -81,7 +81,7 @@ const ContactPage = () => {
                 </motion.div>
 
             </div>
-        </section>
+        </div>
     );
 };
 
