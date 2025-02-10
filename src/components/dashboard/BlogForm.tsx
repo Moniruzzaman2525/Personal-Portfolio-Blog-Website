@@ -8,6 +8,14 @@ import PPTextarea from "../form/PPTextarea";
 interface BlogFormProps {
     onAddBlog: (blog: any) => void;
 }
+
+const categoryOption = [
+    { value: "Technology", label: "Technology" },
+    { value: "Business", label: "Business" },
+    { value: "Lifestyle", label: "Lifestyle" },
+    { value: "Health", label: "Health" },
+]
+
 const BlogForm = ({ onAddBlog }: BlogFormProps) => {
 
 
@@ -20,12 +28,7 @@ const BlogForm = ({ onAddBlog }: BlogFormProps) => {
             <PPSelect
                 name="category"
                 label="Category"
-                options={[
-                    { value: "Technology", label: "Technology" },
-                    { value: "Business", label: "Business" },
-                    { value: "Lifestyle", label: "Lifestyle" },
-                    { value: "Health", label: "Health" },
-                ]}
+                options={categoryOption}
             />
         </PPForm>
     );

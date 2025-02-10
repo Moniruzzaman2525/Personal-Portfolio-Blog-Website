@@ -3,7 +3,6 @@
 
 import PPForm from "../form/PPForm";
 import PPInput from "../form/PPInput";
-import PPSelect from "../form/PPSelect";
 import PPTextarea from "../form/PPTextarea";
 
 interface ProjectFormProps {
@@ -18,16 +17,6 @@ const ProjectForm = ({ onAddProject }: ProjectFormProps) => {
             <PPInput type="text" name="image" label="Project Image URL" placeholder="Enter image URL (optional)" />
             <PPInput type="text" name="liveLink" label="Live Project Link" placeholder="Enter project live URL" />
             <PPTextarea name="description" label="Project Description" placeholder="Describe your project..." rows={4} />
-            <PPSelect
-                name="category"
-                label="Category"
-                options={[
-                    { value: "Web Development", label: "Web Development" },
-                    { value: "Mobile App", label: "Mobile App" },
-                    { value: "AI & ML", label: "AI & ML" },
-                    { value: "E-commerce", label: "E-commerce" },
-                ]}
-            />
         </PPForm>
     );
 };
