@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -8,10 +10,43 @@ import Link from "next/link";
 import PPForm from "@/components/form/PPForm";
 import PPInput from "@/components/form/PPInput";
 import { FieldValues } from "react-hook-form";
+import { Loader2 } from "lucide-react";
 
 const LoginPage = () => {
-    const handleLogin = (data: FieldValues) => {
-        console.log("Login Data:", data);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const handleLogin = async (data: FieldValues) => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || "Login failed");
+            }
+
+            console.log("Login Success:", result);
+
+            // Store token in localStorage
+            if (result.success && result.data?.token) {
+                localStorage.setItem("authToken", result.data.token);
+            }
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -24,9 +59,12 @@ const LoginPage = () => {
             >
                 <h2 className="text-3xl font-extrabold text-gray-900 text-center">Welcome Back</h2>
                 <p className="text-gray-600 text-center mt-2">Sign in to your account</p>
+
+                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+
                 <PPForm onSubmit={handleLogin} style={{ marginTop: "24px" }}>
-                    <PPInput type="email" name="email" label="Email" placeholder="Enter your email" />
-                    <PPInput type="password" name="password" label="Password" placeholder="Enter your password" />
+                    <PPInput type="email" required name="email" label="Email" placeholder="Enter your email" />
+                    <PPInput type="password" required name="password" label="Password" placeholder="Enter your password" />
 
                     <div className="flex justify-end mt-2">
                         <Link href="#" className="text-[#1e16df] text-sm hover:underline">
@@ -35,11 +73,13 @@ const LoginPage = () => {
                     </div>
 
                     <motion.button
+                        type="submit"
+                        disabled={loading}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-6 w-full bg-[#1e16df] text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300"
+                        className={`mt-6 w-full text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md transition duration-300 ${loading ? "bg-gray-400" : "bg-[#1e16df] hover:bg-[#3830cf]"}`}
                     >
-                        Sign In
+                        {loading ? <Loader2 className="animate-spin mx-auto" /> : "Sign In"}
                     </motion.button>
                 </PPForm>
                 <div className="flex items-center my-6">

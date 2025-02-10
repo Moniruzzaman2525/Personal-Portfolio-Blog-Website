@@ -8,9 +8,10 @@ type TInputProps = {
     style?: React.CSSProperties;
     disabled?: boolean;
     suffix?: React.ReactNode;
+    required?: boolean;
 };
 
-const PPInput = ({ type, name, label, placeholder, style, disabled, suffix }: TInputProps) => {
+const PPInput = ({ type, name, label, placeholder, style, disabled, suffix, required }: TInputProps) => {
     return (
         <Controller
             name={name}
@@ -27,6 +28,7 @@ const PPInput = ({ type, name, label, placeholder, style, disabled, suffix }: TI
                             placeholder={placeholder}
                             disabled={disabled}
                             style={style}
+                            required={required}
                             className={`w-full border p-2 rounded-md ${error ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-blue-500`}
                         />
                         {suffix && <span className="absolute right-3 top-2">{suffix}</span>}

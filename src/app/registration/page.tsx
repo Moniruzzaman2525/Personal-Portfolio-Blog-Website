@@ -56,9 +56,9 @@ const SignupPage = () => {
                 {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
                 <PPForm onSubmit={handleSignup} style={{ marginTop: "24px" }}>
-                    <PPInput type="text" name="name" label="Full Name" placeholder="Enter your name" />
-                    <PPInput type="email" name="email" label="Email" placeholder="Enter your email" />
-                    <PPInput type="password" name="password" label="Password" placeholder="Create a password" />
+                    <PPInput type="text" name="name" label="Full Name" required placeholder="Enter your name" />
+                    <PPInput type="email" name="email" label="Email" required placeholder="Enter your email" />
+                    <PPInput type="password" name="password" label="Password" required placeholder="Create a password" />
 
                     <motion.button
                         type="submit"
