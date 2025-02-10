@@ -6,9 +6,10 @@ type TTextareaProps = {
     placeholder?: string;
     style?: React.CSSProperties;
     rows?: number;
+    required?: boolean
 };
 
-const PPTextarea = ({ name, label, placeholder, style, rows = 4 }: TTextareaProps) => {
+const PPTextarea = ({ name, label, placeholder, style, rows = 4, required }: TTextareaProps) => {
     return (
         <Controller
             name={name}
@@ -17,6 +18,7 @@ const PPTextarea = ({ name, label, placeholder, style, rows = 4 }: TTextareaProp
                     {label && <label htmlFor={name} className="block text-gray-700 font-medium mb-1">{label}</label>}
                     <textarea
                         {...field}
+                        required={required}
                         id={name}
                         placeholder={placeholder}
                         rows={rows}

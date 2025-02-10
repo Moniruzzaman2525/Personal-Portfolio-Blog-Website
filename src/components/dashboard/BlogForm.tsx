@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
+import { FieldValues } from "react-hook-form";
 import PPForm from "../form/PPForm";
 import PPInput from "../form/PPInput";
 import PPSelect from "../form/PPSelect";
 import PPTextarea from "../form/PPTextarea";
-interface BlogFormProps {
-    onAddBlog: (blog: any) => void;
-}
 
 const categoryOption = [
     { value: "Technology", label: "Technology" },
@@ -16,8 +14,10 @@ const categoryOption = [
     { value: "Health", label: "Health" },
 ]
 
-const BlogForm = ({ onAddBlog }: BlogFormProps) => {
-
+const BlogForm = () => {
+    const onAddBlog = (data: FieldValues) => {
+        console.log(data)
+    };
 
     return (
         <PPForm onSubmit={onAddBlog} style={{ backgroundColor: "white", padding: "24px", borderRadius: "8px", boxShadow: "0px 2px 6px rgba(0,0,0,0.1)" }}>
