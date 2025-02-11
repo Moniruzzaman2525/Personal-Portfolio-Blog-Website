@@ -1,8 +1,67 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const ContactPage = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    });
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(null);
+    const [error, setError] = useState(null);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+        setSuccess(null);
+        const storedSession = localStorage.getItem("userSession");
+        const session = storedSession ? JSON.parse(storedSession) : null;
+        const userEmail = session?.user?.email;
+
+        if (!userEmail) {
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:5000/api/messages", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userEmail,
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                    user: userEmail
+                }),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || "Failed to send message");
+            }
+            setFormData({ name: "", email: "", subject: "", message: "" });
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="relative w-full bg-white py-16 px-6 md:px-12 lg:px-24">
             <div className=" mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -35,12 +94,18 @@ const ContactPage = () => {
                     <h2 className="text-4xl font-extrabold text-gray-900">Get in Touch</h2>
                     <p className="text-gray-600 mt-3 text-lg">I would love to hear from you! Feel free to drop me a message.</p>
 
-                    <form className="mt-6 flex flex-col space-y-6">
+                    <form className="mt-6 flex flex-col space-y-6" onSubmit={sendMessage}>
+                        {error && <p className="text-red-500 text-center">{error}</p>}
+                        {success && <p className="text-green-500 text-center">{success}</p>}
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-gray-700 font-medium">Full Name</label>
                                 <input
                                     type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                     placeholder="Enter your name"
                                     className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
                                 />
@@ -49,6 +114,9 @@ const ContactPage = () => {
                                 <label className="block text-gray-700 font-medium">Email Address</label>
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     placeholder="Enter your email"
                                     className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
                                 />
@@ -58,6 +126,9 @@ const ContactPage = () => {
                             <label className="block text-gray-700 font-medium">Subject</label>
                             <input
                                 type="text"
+                                name="subject"
+                                value={formData.subject}
+                                onChange={handleChange}
                                 placeholder="Enter subject"
                                 className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df]"
                             />
@@ -65,7 +136,10 @@ const ContactPage = () => {
                         <div>
                             <label className="block text-gray-700 font-medium">Your Message</label>
                             <textarea
+                                name="message"
                                 rows={5}
+                                value={formData.message}
+                                onChange={handleChange}
                                 placeholder="Type your message..."
                                 className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1e16df] resize-none"
                             ></textarea>
@@ -74,12 +148,12 @@ const ContactPage = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="mt-4 w-full bg-[#1e16df] text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-[#3830cf] transition duration-300"
+                            disabled={loading}
                         >
-                            Send Message
+                            {loading ? "Sending..." : "Send Message"}
                         </motion.button>
                     </form>
                 </motion.div>
-
             </div>
         </div>
     );

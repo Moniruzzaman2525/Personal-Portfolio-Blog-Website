@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { Trash2, Edit } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Blog {
     _id: string;
@@ -14,6 +15,7 @@ const ListsBlogs = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const router = useRouter()
 
     useEffect(() => {
         const storedSession = localStorage.getItem("userSession");
@@ -51,10 +53,23 @@ const ListsBlogs = () => {
 
     const handleDelete = async (id: string) => {
         if (!confirm("Are you sure you want to delete this blog?")) return;
+        const storedSession = localStorage.getItem("userSession");
+        const session = storedSession ? JSON.parse(storedSession) : null;
+        const userEmail = session?.user?.email;
 
+        if (!userEmail) {
+            setError("User email not found. Please log in again.");
+            setLoading(false);
+            router.push('/login')
+            return;
+        }
         try {
             const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "user-email": userEmail,
+                },
             });
 
             if (!res.ok) {

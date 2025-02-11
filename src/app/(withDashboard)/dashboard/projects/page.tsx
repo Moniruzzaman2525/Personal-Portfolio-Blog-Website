@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { Trash2, Edit } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Project {
     _id: string;
@@ -14,6 +15,7 @@ const ListsProjects = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const router = useRouter()
 
     useEffect(() => {
         const storedSession = localStorage.getItem("userSession");
@@ -23,6 +25,7 @@ const ListsProjects = () => {
         if (!userEmail) {
             setError("User email not found. Please log in again.");
             setLoading(false);
+            router.push('/login')
             return;
         }
 
@@ -51,10 +54,23 @@ const ListsProjects = () => {
 
     const handleDelete = async (id: string) => {
         if (!confirm("Are you sure you want to delete this project?")) return;
+        const storedSession = localStorage.getItem("userSession");
+        const session = storedSession ? JSON.parse(storedSession) : null;
+        const userEmail = session?.user?.email;
 
+        if (!userEmail) {
+            setError("User email not found. Please log in again.");
+            setLoading(false);
+            router.push('/login')
+            return;
+        }
         try {
             const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "user-email": userEmail,
+                },
             });
 
             if (!res.ok) {
@@ -77,7 +93,7 @@ const ListsProjects = () => {
 
     return (
         <div className="p-6 bg-white shadow-md rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">All Projects (Admin Panel)</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">All Projects</h2>
 
             <div className="overflow-x-auto">
                 <table className="w-full border-collapse border border-gray-300">
