@@ -82,8 +82,6 @@ const EditProject = () => {
         return <div className="text-center py-10 text-gray-500">Loading project details...</div>;
     }
 
-
-
     return (
         <PPForm onSubmit={onUpdateProject} defaultValues={project?.data} style={{ backgroundColor: "white", padding: "24px", borderRadius: "8px", boxShadow: "0px 2px 6px rgba(0,0,0,0.1)" }}>
             <h3 className="text-xl font-semibold mb-4">Edit Project</h3>
