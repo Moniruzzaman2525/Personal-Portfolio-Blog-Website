@@ -1,23 +1,50 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import Loading from "@/components/shared/Loading";
+import { TProject } from "@/types/project";
 import SingleProject from "@/components/SingleProject";
 
+const SingleProduct = () => {
+    const { id } = useParams();
+    const [product, setProduct] = useState<TProject | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-type ProductDetailsProps = {
-    params: {
-        id: string;
-    };
-};
+    useEffect(() => {
+        if (!id) return;
 
-const SingleProjectPage = async ({ params }: ProductDetailsProps) => {
+        fetch(`http://localhost:5000/api/projects/${id}`)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Project not found");
+                }
+                return res.json();
+            })
+            .then((data) => {
+                setProduct(data.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false);
+            });
+    }, [id]);
 
-    const { id } = params
-    const res = await fetch(`http://localhost:5000/api/projects/${id}`)
-    const project = await res.json()
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error || !product) {
+        return <div className="text-center text-red-500 py-20">Error: {error || "Project not found"}</div>;
+    }
 
     return (
         <div>
-            <SingleProject project={project.data} />
+            <SingleProject project={product} />
         </div>
     );
 };
 
-export default SingleProjectPage;
+export default SingleProduct;
