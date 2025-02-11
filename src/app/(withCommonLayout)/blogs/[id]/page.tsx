@@ -17,15 +17,15 @@ interface Blog {
 }
 
 const SingleBlog = () => {
-    const { blogId } = useParams();
+    const { id } = useParams();
     const [blog, setBlog] = useState<Blog | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        if (!blogId) return;
+        if (!id) return;
 
-        fetch(`http://localhost:5000/api/blogs/${blogId}`)
+        fetch(`http://localhost:5000/api/blogs/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Blog not found");
@@ -40,7 +40,7 @@ const SingleBlog = () => {
                 setError(err.message);
                 setLoading(false);
             });
-    }, [blogId]);
+    }, [id]);
 
     if (loading) {
         return <Loading />

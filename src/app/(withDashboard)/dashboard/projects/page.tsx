@@ -1,20 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 "use client";
-
 import { useEffect, useState } from "react";
 import { Trash2, Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Loading from "@/components/shared/Loading"; 
-
-interface Project {
-    _id: string;
-    title: string;
-    createdAt: string;
-}
+import Loading from "@/components/shared/Loading";
+import { TProject } from "@/types/project";
 
 const ListsProjects = () => {
-    const [projects, setProjects] = useState<Project[]>([]);
+    const [projects, setProjects] = useState<TProject[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();

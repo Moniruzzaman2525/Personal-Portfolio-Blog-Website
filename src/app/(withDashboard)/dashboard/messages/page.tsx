@@ -103,7 +103,6 @@ const ListsMessages = () => {
                             <th className="border border-gray-300 px-4 py-2 text-left">Subject</th>
                             <th className="border border-gray-300 px-4 py-2 hidden xl:table-cell">Message</th>
                             <th className="border border-gray-300 px-4 py-2 text-center">Date</th>
-                            <th className="border border-gray-300 px-4 py-2 text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,22 +117,6 @@ const ListsMessages = () => {
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">
                                         {new Date(message.createdAt).toLocaleDateString()}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2 text-center">
-                                        <div className="flex items-center justify-center gap-2">
-                                            <button
-                                                className="text-blue-600 hover:text-blue-800 p-2"
-                                                onClick={() => router.push(`/dashboard/messages/edit/${message._id}`)}
-                                            >
-                                                <Edit size={18} />
-                                            </button>
-                                            <button
-                                                className="text-red-600 hover:text-red-800 p-2"
-                                                onClick={() => handleDelete(message._id)}
-                                            >
-                                                <Trash2 size={18} />
-                                            </button>
-                                        </div>
                                     </td>
                                 </tr>
                             ))
@@ -156,20 +139,6 @@ const ListsMessages = () => {
                             <p className="text-gray-600 text-sm">{message.message.length > 50 ? `${message.message.slice(0, 50)}...` : message.message}</p>
                             <div className="flex justify-between items-center mt-2">
                                 <span className="text-xs text-gray-500">{new Date(message.createdAt).toLocaleDateString()}</span>
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        className="text-blue-600 hover:text-blue-800"
-                                        onClick={() => router.push(`/dashboard/messages/edit/${message._id}`)}
-                                    >
-                                        <Edit size={18} />
-                                    </button>
-                                    <button
-                                        className="text-red-600 hover:text-red-800"
-                                        onClick={() => handleDelete(message._id)}
-                                    >
-                                        <Trash2 size={18} />
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     ))

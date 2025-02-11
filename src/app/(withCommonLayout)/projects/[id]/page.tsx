@@ -3,7 +3,7 @@ import SingleProject from "@/components/SingleProject";
 
 type ProductDetailsProps = {
     params: {
-        productId: string;
+        id: string;
     };
     searchParams?: Record<string, string>;
 };
@@ -21,8 +21,8 @@ const fetchProject = async (id: string) => {
 
 const SingleProjectPage = async ({params}: ProductDetailsProps) => {
 
-    const { productId } = await params
-    const project = await fetchProject(productId)
+    const { id } = await params
+    const project = await fetchProject(id)
 
     return (
         <div>
