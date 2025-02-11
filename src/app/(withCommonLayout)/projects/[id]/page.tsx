@@ -19,7 +19,7 @@ const fetchProject = async (id: string) => {
         });
 };
 
-const SingleProjectPage = async ({params}: ProductDetailsProps) => {
+const SingleProjectPage = async ({ params }: ProductDetailsProps) => {
 
     const { id } = await params
     const project = await fetchProject(id)
