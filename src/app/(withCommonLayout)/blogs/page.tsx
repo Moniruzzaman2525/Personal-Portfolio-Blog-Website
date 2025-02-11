@@ -11,10 +11,7 @@ const BlogPage = async () => {
         <div className="relative w-full bg-[#fbfbfe] py-16 px-6 md:px-12 lg:px-24">
             <div className="mx-auto">
                 <div className="text-4xl font-extrabold text-gray-900 text-center">
-                    All Projects
-                </div>
-                <div className="text-gray-600 text-lg text-center mt-4">
-                    A showcase of my best projects, built with modern web technologies.
+                    All Blogs
                 </div>
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {data?.data.map((blog: TBlog, index: number) => (
