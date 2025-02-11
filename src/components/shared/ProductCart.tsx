@@ -7,8 +7,6 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { TProject } from "@/types/project";
 
-
-
 interface ProductCartProps {
     project: TProject;
     index: number;
@@ -20,7 +18,7 @@ const ProductCart = ({ project, index }: ProductCartProps) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-200 overflow-hidden flex flex-col max-w-sm mx-auto"
+            className="w-full bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 border border-gray-200 overflow-hidden flex flex-col"
         >
             <div className="relative w-full h-48 overflow-hidden">
                 <Image

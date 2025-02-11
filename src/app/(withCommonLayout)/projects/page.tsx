@@ -25,7 +25,7 @@ const ProjectsPage = async () => {
                 <div className="text-gray-600 text-lg text-center mt-4">
                     A showcase of my best projects, built with modern web technologies.
                 </div>
-                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {res.data.map((project: TProject, index: number) => (
                         <ProductCart key={project._id} project={project} index={index} />
                     ))}
