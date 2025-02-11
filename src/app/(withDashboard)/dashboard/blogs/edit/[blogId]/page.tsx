@@ -10,6 +10,7 @@ import PPInput from "@/components/form/PPInput";
 import PPTextarea from "@/components/form/PPTextarea";
 import PPSelect from "@/components/form/PPSelect";
 import Loading from "@/components/shared/Loading";
+import { urls } from "@/utils/urls";
 
 const categoryOption = [
     { value: "Technology", label: "Technology" },
@@ -26,7 +27,7 @@ const EditBlog = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/blogs/${blogId}`)
+        fetch(`${urls}/api/blogs/${blogId}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch blog details");
@@ -67,7 +68,7 @@ const EditBlog = () => {
                 data.image = imageUrl;
             }
 
-            const response = await fetch(`http://localhost:5000/api/blogs/${blogId}`, {
+            const response = await fetch(`${urls}/api/blogs/${blogId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -102,8 +103,8 @@ const EditBlog = () => {
             <h3 className="text-xl font-semibold mb-4">Edit Blog</h3>
             {error && <p className="text-red-500 text-center mb-2">{error}</p>}
 
-            <PPInput required type="text" name="title" label="Title" placeholder="Enter blog title"  />
-            <PPTextarea required name="content" label="Content" placeholder="Write your blog content here..." rows={4}  />
+            <PPInput required type="text" name="title" label="Title" placeholder="Enter blog title" />
+            <PPTextarea required name="content" label="Content" placeholder="Write your blog content here..." rows={4} />
 
             <div className="mt-[-15px]">
                 <Controller

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Loading from "@/components/shared/Loading";
 import { TBlog } from "@/types/blog";
+import { urls } from "@/utils/urls";
 const SingleBlog = () => {
     const { id } = useParams();
     const [blog, setBlog] = useState<TBlog | null>(null);
@@ -17,7 +18,7 @@ const SingleBlog = () => {
     useEffect(() => {
         if (!id) return;
 
-        fetch(`http://localhost:5000/api/blogs/${id}`)
+        fetch(`${urls}/api/blogs/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Blog not found");

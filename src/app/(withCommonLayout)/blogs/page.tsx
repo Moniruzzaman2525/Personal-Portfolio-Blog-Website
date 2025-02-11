@@ -1,9 +1,10 @@
 
 import SingleBlog from "@/components/SingleBlog";
 import { TBlog } from "@/types/blog";
+import { urls } from "@/utils/urls";
 
 const BlogPage = async () => {
-    const res = await fetch("http://localhost:5000/api/blogs");
+    const res = await fetch(`${urls}/api/blogs`);
     const data = await res.json();
 
     return (

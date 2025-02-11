@@ -9,6 +9,7 @@ import { uploadImageToImgBB } from "@/utils/uploadImageToImgBB";
 import PPForm from "@/components/form/PPForm";
 import PPInput from "@/components/form/PPInput";
 import PPTextarea from "@/components/form/PPTextarea";
+import { urls } from "@/utils/urls";
 
 const EditProject = () => {
     const { projectId } = useParams();
@@ -17,7 +18,7 @@ const EditProject = () => {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/projects/${projectId}`)
+        fetch(`${urls}/api/projects/${projectId}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch project details");
@@ -56,7 +57,7 @@ const EditProject = () => {
                 data.image = imageUrl;
             }
 
-            const response = await fetch(`http://localhost:5000/api/projects/${projectId}`, {
+            const response = await fetch(`${urls}/api/projects/${projectId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

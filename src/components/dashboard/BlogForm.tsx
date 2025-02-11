@@ -10,6 +10,7 @@ import PPSelect from "../form/PPSelect";
 import PPTextarea from "../form/PPTextarea";
 import { uploadImageToImgBB } from "@/utils/uploadImageToImgBB";
 import Loading from "../shared/Loading";
+import { urls } from "@/utils/urls";
 
 const categoryOption = [
     { value: "Technology", label: "Technology" },
@@ -44,7 +45,7 @@ const BlogForm = () => {
                 const imageUrl = await uploadImageToImgBB(data.image);
                 data.image = imageUrl;
             }
-            const response = await fetch("http://localhost:5000/api/blogs", {
+            const response = await fetch(`${urls}/api/blogs`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

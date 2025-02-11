@@ -5,6 +5,7 @@ import { Trash2, Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/shared/Loading";
 import { TMessage } from "@/types/message";
+import { urls } from "@/utils/urls";
 
 const ListsMessages = () => {
     const [messages, setMessages] = useState<TMessage[]>([]);
@@ -23,7 +24,7 @@ const ListsMessages = () => {
             return;
         }
 
-        fetch("http://localhost:5000/api/messages", {
+        fetch(`${urls}/api/messages`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -57,7 +58,7 @@ const ListsMessages = () => {
             return;
         }
         try {
-            const res = await fetch(`http://localhost:5000/api/messages/${id}`, {
+            const res = await fetch(`${urls}/api/messages/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

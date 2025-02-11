@@ -6,6 +6,7 @@ import { Trash2, Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/shared/Loading";
 import { TProject } from "@/types/project";
+import { urls } from "@/utils/urls";
 
 const ListsProjects = () => {
     const [projects, setProjects] = useState<TProject[]>([]);
@@ -25,7 +26,7 @@ const ListsProjects = () => {
             return;
         }
 
-        fetch("http://localhost:5000/api/projects/user-projects", {
+        fetch(`${urls}/api/projects/user-projects`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -59,7 +60,7 @@ const ListsProjects = () => {
             return;
         }
         try {
-            const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
+            const res = await fetch(`${urls}/api/projects/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

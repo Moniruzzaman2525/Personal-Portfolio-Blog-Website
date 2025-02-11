@@ -1,8 +1,9 @@
 import ProductCart from "@/components/shared/ProductCart";
 import { TProject } from "@/types/project";
+import { urls } from "@/utils/urls";
 
 const ProjectsPage = async () => {
-    const res = await fetch("http://localhost:5000/api/projects")
+    const res = await fetch(`${urls}/api/projects`)
     const data = await res.json();
 
     return (

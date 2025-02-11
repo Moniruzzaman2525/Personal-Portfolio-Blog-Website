@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Loading from "@/components/shared/Loading";
 import { TProject } from "@/types/project";
 import SingleProject from "@/components/SingleProject";
+import { urls } from "@/utils/urls";
 
 const SingleProduct = () => {
     const { id } = useParams();
@@ -15,7 +16,7 @@ const SingleProduct = () => {
     useEffect(() => {
         if (!id) return;
 
-        fetch(`http://localhost:5000/api/projects/${id}`)
+        fetch(`${urls}/api/projects/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Project not found");
@@ -48,3 +49,4 @@ const SingleProduct = () => {
 };
 
 export default SingleProduct;
+

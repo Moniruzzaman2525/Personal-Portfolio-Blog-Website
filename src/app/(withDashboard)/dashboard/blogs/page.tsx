@@ -5,6 +5,7 @@ import { Trash2, Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/shared/Loading";
 import { TBlog } from "@/types/blog";
+import { urls } from "@/utils/urls";
 
 
 const ListsBlogs = () => {
@@ -24,7 +25,7 @@ const ListsBlogs = () => {
             return;
         }
 
-        fetch("http://localhost:5000/api/blogs/user-blogs", {
+        fetch(`${urls}/api/blogs/user-blogs`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -58,7 +59,7 @@ const ListsBlogs = () => {
             return;
         }
         try {
-            const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+            const res = await fetch(`${urls}/api/blogs/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

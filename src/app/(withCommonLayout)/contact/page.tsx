@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Loading from "@/components/shared/Loading";
+import { urls } from "@/utils/urls";
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const ContactPage = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/api/messages", {
+            const response = await fetch(`${urls}/api/messages`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
