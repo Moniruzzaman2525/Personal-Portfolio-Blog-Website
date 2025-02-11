@@ -17,6 +17,7 @@ export const PPSelect = ({ label, name, options, disabled, mode, required }: TPH
     return (
         <Controller
             name={name}
+            defaultValue="" 
             render={({ field, fieldState: { error } }) => (
                 <div className="mb-4">
                     {label && (
@@ -34,7 +35,7 @@ export const PPSelect = ({ label, name, options, disabled, mode, required }: TPH
                         className={`w-full border p-2 rounded-md ${error ? "border-red-500" : "border-gray-300"
                             } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     >
-                        <option value="" disabled selected>
+                        <option value="" disabled>
                             Select an option
                         </option>
 
