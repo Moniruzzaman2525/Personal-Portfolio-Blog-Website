@@ -1,6 +1,13 @@
-# 🚀 Full Stack Blog & Project Management Platform
+# 🚀 Personal Portfolio & Blog Website
 
-A **Next.js-based** full-stack application that allows users to **create, edit, delete, and manage blogs and projects** efficiently. This project follows modern development practices, including **API integration, authentication, dynamic routing, and server-side rendering (SSR).**
+
+A **Next.js-based** Personal Portfolio & Blog Website application that allows users to **create, edit, delete, and manage blogs and projects** efficiently. This project follows modern development practices, including **API integration, authentication, dynamic routing, and server-side rendering (SSR).**
+
+---
+
+### 🌐 Live Demo
+🔗 Live Link: Visit NS Book Shop ([#Portfolio](https://personal-portfolio-blog-website-hazel.vercel.app))
+🔗 Server Link: Visit NS Book Shop ([#Server](https://personal-portfolio-gamma-neon.vercel.app))
 
 ---
 
@@ -11,7 +18,6 @@ A **Next.js-based** full-stack application that allows users to **create, edit, 
 - ✅ **Dynamic Routing for Single Blog & Project Pages**
 - ✅ **Framer Motion Animations**
 - ✅ **Image Upload with ImgBB**
-- ✅ **Secure API Endpoints**
 - ✅ **Optimized for Vercel Deployment**
 - ✅ **Fully Responsive UI (Mobile, Tablet, Desktop)**
 - ✅ **SEO-friendly Metadata Generation**
@@ -45,8 +51,14 @@ A **Next.js-based** full-stack application that allows users to **create, edit, 
 
 ### 1️⃣ **Clone the Repository**
 ```sh
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+## front end
+git clone https://github.com/Moniruzzaman2525/Personal-Portfolio-Blog-Website.git
+cd Personal-Portfolio-Blog-Website
+```
+```sh
+## backend
+git clone https://github.com/Moniruzzaman2525/personal-portfolio-server.git
+cd personal-portfolio-server
 ```
 
 ### 2️⃣ **Install Dependencies**
@@ -55,11 +67,10 @@ npm install
 ```
 
 ### 3️⃣ **Set Up Environment Variables**
-Create a `.env.local` file in the root directory and add the following:
+Create a `.env` file in the root directory and add the following:
 
 ```
 # API Configuration
-NEXT_PUBLIC_API_URL=http://localhost:5000
 IMG_UPLOAD_API_KEY=your_imgbb_api_key
 
 # Authentication
@@ -68,7 +79,7 @@ NEXTAUTH_URL=http://localhost:3000
 MONGODB_URI=mongodb+srv://your_mongodb_connection
 
 # Vercel Production API
-NEXT_PUBLIC_VERCEL_API=https://your-vercel-deployed-backend.com
+NEXT_PUBLIC_VERCEL_API=https://personal-portfolio-gamma-neon.vercel.app/
 ```
 
 ### 4️⃣ **Run the Development Server**
@@ -101,39 +112,8 @@ The API should now be available at **`http://localhost:5000/api`**.
 
 ---
 
-## 🚀 Deployment
-
-### **Frontend Deployment (Vercel)**
-1. **Push your code to GitHub**
-2. **Connect GitHub Repo to Vercel**
-3. **Set Environment Variables in Vercel Dashboard**
-4. **Deploy and get production URL**
-
-### **Backend Deployment (Render / Railway)**
-1. **Deploy MongoDB Database on MongoDB Atlas**
-2. **Deploy API to Render or Railway**
-3. **Set up environment variables for the backend**
-
----
-
-## 🤝 Contribution Guidelines
-
-1. **Fork the repository**
-2. **Create a new branch** (`feature/your-feature-name`)
-3. **Commit changes** and push to your fork
-4. **Submit a Pull Request (PR)**
-
----
-
-## 📄 License
-This project is open-source under the **MIT License**.
-
----
-
 ## 📬 Contact
 For any questions or issues, feel free to reach out:
 
-📧 Email: **your-email@example.com**
-🌐 Portfolio: **[yourwebsite.com](https://yourwebsite.com)**
-🐦 Twitter: **[@yourhandle](https://twitter.com/yourhandle)**
+📧 Email: **web.moniruzzaman1@gmail.com**
 
