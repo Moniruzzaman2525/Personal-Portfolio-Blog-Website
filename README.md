@@ -1,7 +1,7 @@
 # 🚀 Personal Portfolio & Blog Website
 
 
-A **Next.js-based** Personal Portfolio & Blog Website application that allows users to **create, edit, delete, and manage blogs and projects** efficiently. This project follows modern development practices, including **API integration, authentication, dynamic routing, and server-side rendering (SSR).**
+**Next.js-based** Personal Portfolio & Blog Website application that allows users to **create, edit, delete, and manage blogs and projects** efficiently. This project follows modern development practices, including **API integration, authentication, dynamic routing, and server-side rendering (SSR).**
 
 ---
 
