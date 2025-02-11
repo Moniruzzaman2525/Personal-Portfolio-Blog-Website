@@ -3,15 +3,12 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { TBlog } from "@/types/blog";
+import { TSingleBlogProps } from "@/types/props.type";
 
 
-interface SingleBlogProps {
-    blog: TBlog;
-    index: number;
-}
 
-const SingleBlog = ({ blog, index }: SingleBlogProps) => {
+
+const SingleBlog = ({ blog, index }: TSingleBlogProps) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}

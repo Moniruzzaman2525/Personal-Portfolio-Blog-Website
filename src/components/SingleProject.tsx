@@ -1,16 +1,13 @@
 "use client";
-
-import { TProject } from "@/types/project";
+import { TSingleProjectProps } from "@/types/props.type";
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface SingleProjectProps {
-    project: TProject;
-}
 
-const SingleProject = ({ project }: SingleProjectProps) => {
+
+const SingleProject = ({ project }: TSingleProjectProps) => {
     return (
         <div className="bg-gray-50 min-h-screen">
             <div className="relative w-full h-80 md:h-[500px] overflow-hidden">

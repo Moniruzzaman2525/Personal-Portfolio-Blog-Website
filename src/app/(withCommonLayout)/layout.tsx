@@ -1,13 +1,11 @@
 import Navbar from "@/components/shared/Navbar";
+import { TCommonLayoutProps } from "@/types/props.type";
 import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
-import { ReactNode } from "react";
 
-type CommonLayoutProps = {
-    children: ReactNode;
-}
 
-const CommonLayout = async ({ children }: CommonLayoutProps) => {
+
+const CommonLayout = async ({ children }: TCommonLayoutProps) => {
     const session = await getServerSession(authOptions);
 
     return (
