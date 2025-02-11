@@ -81,7 +81,7 @@ const ContactPage = () => {
                     <div className="mt-6 space-y-5 text-lg">
                         <p className="text-white font-medium">📍 <span className="font-semibold">Location:</span> Sherpur, Dhaka, Bangladesh</p>
                         <p className="text-white font-medium">📧 <span className="font-semibold">Email:</span> <a href="mailto:web.moniruzzaman1@gmail.com" className="hover:underline">web.moniruzzaman1@gmail.com</a></p>
-                        <p className="text-white font-medium">🌐 <span className="font-semibold">Website:</span> <a href="https://www.moniruzzaman.dev" className="hover:underline">www.moniruzzaman.dev</a></p>
+                        <p className="text-white font-medium">🌐 <span className="font-semibold">Website:</span> <a href="https://personal-portfolio-blog-website-hazel.vercel.app/" className="hover:underline">www.moniruzzaman.dev</a></p>
                     </div>
                     <div className="mt-6 flex space-x-6 text-xl">
                         <a target="_blank" href="https://www.linkedin.com/in/moniruzzaman25/" className="text-white hover:text-gray-300 transition">🔗 LinkedIn</a>
