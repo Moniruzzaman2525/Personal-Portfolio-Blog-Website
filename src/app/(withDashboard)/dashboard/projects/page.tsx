@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -14,7 +15,6 @@ interface Project {
 const ListsProjects = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
     const router = useRouter()
 
     useEffect(() => {
@@ -23,7 +23,6 @@ const ListsProjects = () => {
         const userEmail = session?.user?.email;
 
         if (!userEmail) {
-            setError("User email not found. Please log in again.");
             setLoading(false);
             router.push('/login')
             return;
@@ -47,7 +46,6 @@ const ListsProjects = () => {
                 setLoading(false);
             })
             .catch((err) => {
-                setError(err.message);
                 setLoading(false);
             });
     }, []);
@@ -59,7 +57,6 @@ const ListsProjects = () => {
         const userEmail = session?.user?.email;
 
         if (!userEmail) {
-            setError("User email not found. Please log in again.");
             setLoading(false);
             router.push('/login')
             return;
@@ -78,17 +75,13 @@ const ListsProjects = () => {
             }
 
             setProjects(projects.filter((project) => project._id !== id));
-        } catch (err: any) {
-            alert(err.message);
+        } catch (err) {
+
         }
     };
 
     if (loading) {
         return <div className="text-center py-10 text-gray-500">Loading projects...</div>;
-    }
-
-    if (error) {
-        return <div className="text-center py-10 text-red-500">Error: {error}</div>;
     }
 
     return (
@@ -115,8 +108,8 @@ const ListsProjects = () => {
                                     <td className="border border-gray-300 px-4 py-2 text-center">
                                         <div className="flex items-center justify-center gap-2">
                                             <button
+                                                onClick={() => router.push(`/dashboard/projects/edit/${project._id}`)}
                                                 className="text-blue-600 hover:text-blue-800 p-2"
-                                                onClick={() => alert(`Edit project ${project._id}`)}
                                             >
                                                 <Edit size={18} />
                                             </button>
