@@ -26,23 +26,20 @@ const SingleProject = ({ project }: SingleProjectProps) => {
                         layout="fill"
                         objectFit="cover"
                         unoptimized={true}
-                        className="brightness-90"
+                        className="brightness-75"
                     />
                 </motion.div>
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-white text-center">
                         {project.title}
                     </h1>
                 </div>
             </div>
-            <div className="max-w-4xl mx-auto px-6 md:px-12 py-12">
-                <p className="text-gray-600 text-sm">
-                    Published on{" "}
-                    <span className="font-medium text-gray-800">
-                        {new Date(project.createdAt || "").toLocaleDateString()}
-                    </span>
+            <div className="max-w-4xl mx-auto px-6 md:px-12 py-16">
+                <p className="text-gray-600 text-sm mb-2">
+                    <span className="font-semibold text-gray-700">Published:</span>{" "}
+                    {new Date(project.createdAt || "").toLocaleDateString()}
                 </p>
-
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -51,7 +48,7 @@ const SingleProject = ({ project }: SingleProjectProps) => {
                 >
                     {project.description}
                 </motion.p>
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-10 flex flex-wrap gap-4">
                     <Link
                         href="/projects"
                         className="flex items-center gap-2 px-5 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100 transition"
@@ -64,7 +61,7 @@ const SingleProject = ({ project }: SingleProjectProps) => {
                             href={project.liveLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 px-5 py-2 text-white bg-[#1e16df] rounded-lg hover:bg-[#1410b6] transition"
+                            className="flex items-center gap-2 px-6 py-2 text-white bg-[#1e16df] rounded-lg hover:bg-[#1410b6] transition font-medium"
                         >
                             Live Preview <ExternalLink size={18} />
                         </Link>
