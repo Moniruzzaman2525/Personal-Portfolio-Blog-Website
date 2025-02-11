@@ -4,18 +4,10 @@ import { useEffect, useState } from "react";
 import { Trash2, Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/shared/Loading";
-
-interface Message {
-    _id: string;
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-    createdAt: string;
-}
+import { TMessage } from "@/types/message";
 
 const ListsMessages = () => {
-    const [messages, setMessages] = useState<Message[]>([]);
+    const [messages, setMessages] = useState<TMessage[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();

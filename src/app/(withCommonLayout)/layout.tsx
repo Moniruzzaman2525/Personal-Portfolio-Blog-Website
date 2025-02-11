@@ -3,13 +3,13 @@ import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 import { ReactNode } from "react";
 
-interface CommonLayoutProps {
+type CommonLayoutProps = {
     children: ReactNode;
 }
 
 const CommonLayout = async ({ children }: CommonLayoutProps) => {
     const session = await getServerSession(authOptions);
-    
+
     return (
         <div>
             <Navbar session={session} />

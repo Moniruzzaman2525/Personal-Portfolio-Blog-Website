@@ -5,14 +5,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-import { TProject } from "@/types/project";
+import { TProductCartProps } from "@/types/props.type";
 
-interface ProductCartProps {
-    project: TProject;
-    index: number;
-}
-
-const ProductCart = ({ project, index }: ProductCartProps) => {
+const ProductCart = ({ project, index }: TProductCartProps) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}

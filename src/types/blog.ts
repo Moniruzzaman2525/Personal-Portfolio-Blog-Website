@@ -3,4 +3,5 @@ export type TBlog = {
     title: string;
     image: string;
     content: string;
+    createdAt: string
 }

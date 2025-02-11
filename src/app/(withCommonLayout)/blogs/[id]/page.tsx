@@ -7,18 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Loading from "@/components/shared/Loading";
-
-interface Blog {
-    _id: string;
-    title: string;
-    image: string;
-    description: string;
-    createdAt: string;
-}
-
+import { TBlog } from "@/types/blog";
 const SingleBlog = () => {
     const { id } = useParams();
-    const [blog, setBlog] = useState<Blog | null>(null);
+    const [blog, setBlog] = useState<TBlog | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -87,7 +79,7 @@ const SingleBlog = () => {
                     transition={{ duration: 0.4, delay: 0.2 }}
                     className="text-gray-800 text-lg leading-relaxed mt-2"
                 >
-                    {blog.description}
+                    {blog.content}
                 </motion.p>
                 <div className="mt-10">
                     <Link
