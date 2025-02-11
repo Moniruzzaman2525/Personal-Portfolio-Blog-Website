@@ -9,6 +9,7 @@ import PPInput from "../form/PPInput";
 import PPSelect from "../form/PPSelect";
 import PPTextarea from "../form/PPTextarea";
 import { uploadImageToImgBB } from "@/utils/uploadImageToImgBB";
+import Loading from "../shared/Loading";
 
 const categoryOption = [
     { value: "Technology", label: "Technology" },
@@ -64,7 +65,9 @@ const BlogForm = () => {
             setLoading(false);
         }
     };
-
+    if (loading) {
+        return <Loading />
+    }
 
     return (
         <PPForm onSubmit={onAddBlog} style={{ backgroundColor: "white", padding: "24px", borderRadius: "8px", boxShadow: "0px 2px 6px rgba(0,0,0,0.1)" }}>

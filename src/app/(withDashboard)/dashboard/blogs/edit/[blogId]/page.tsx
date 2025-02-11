@@ -9,6 +9,7 @@ import PPForm from "@/components/form/PPForm";
 import PPInput from "@/components/form/PPInput";
 import PPTextarea from "@/components/form/PPTextarea";
 import PPSelect from "@/components/form/PPSelect";
+import Loading from "@/components/shared/Loading";
 
 const categoryOption = [
     { value: "Technology", label: "Technology" },
@@ -90,7 +91,7 @@ const EditBlog = () => {
     };
 
     if (loading) {
-        return <div className="text-center py-10 text-gray-500">Loading blog details...</div>;
+        return <Loading />
     }
 
     if (error) {

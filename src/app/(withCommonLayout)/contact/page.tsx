@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Loading from "@/components/shared/Loading";
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -61,7 +62,9 @@ const ContactPage = () => {
             setLoading(false);
         }
     };
-
+    if (loading) {
+        return <Loading />
+    }
     return (
         <div className="relative w-full bg-white py-16 px-6 md:px-12 lg:px-24">
             <div className=" mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

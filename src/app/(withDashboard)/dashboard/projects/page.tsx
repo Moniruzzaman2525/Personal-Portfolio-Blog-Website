@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import { Trash2, Edit } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Loading from "@/components/shared/Loading"; 
 
 interface Project {
     _id: string;
@@ -15,7 +16,8 @@ interface Project {
 const ListsProjects = () => {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const router = useRouter()
+    const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const storedSession = localStorage.getItem("userSession");
@@ -23,8 +25,9 @@ const ListsProjects = () => {
         const userEmail = session?.user?.email;
 
         if (!userEmail) {
+            setError("User email not found. Please log in again.");
             setLoading(false);
-            router.push('/login')
+            router.push("/login");
             return;
         }
 
@@ -46,6 +49,7 @@ const ListsProjects = () => {
                 setLoading(false);
             })
             .catch((err) => {
+                setError(err.message);
                 setLoading(false);
             });
     }, []);
@@ -57,8 +61,7 @@ const ListsProjects = () => {
         const userEmail = session?.user?.email;
 
         if (!userEmail) {
-            setLoading(false);
-            router.push('/login')
+            router.push("/login");
             return;
         }
         try {
@@ -76,24 +79,28 @@ const ListsProjects = () => {
 
             setProjects(projects.filter((project) => project._id !== id));
         } catch (err) {
-
+            setError("Error deleting project. Please try again.");
         }
     };
 
     if (loading) {
-        return <div className="text-center py-10 text-gray-500">Loading projects...</div>;
+        return <Loading />;
+    }
+
+    if (error) {
+        return <div className="text-center py-10 text-red-500">{error}</div>;
     }
 
     return (
         <div className="p-6 bg-white shadow-md rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">All Projects</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center md:text-left">All Projects</h2>
 
-            <div className="overflow-x-auto">
+            <div className="hidden md:block overflow-x-auto">
                 <table className="w-full border-collapse border border-gray-300">
                     <thead className="bg-gray-100">
                         <tr className="text-gray-700 text-sm md:text-base">
                             <th className="border border-gray-300 px-4 py-2 text-left">Title</th>
-                            <th className="border border-gray-300 px-4 py-2 hidden sm:table-cell">Published Date</th>
+                            <th className="border border-gray-300 px-4 py-2 hidden lg:table-cell">Published Date</th>
                             <th className="border border-gray-300 px-4 py-2 text-center">Actions</th>
                         </tr>
                     </thead>
@@ -102,14 +109,14 @@ const ListsProjects = () => {
                             projects.map((project) => (
                                 <tr key={project._id} className="hover:bg-gray-50 text-sm md:text-base">
                                     <td className="border border-gray-300 px-4 py-2">{project.title}</td>
-                                    <td className="border border-gray-300 px-4 py-2 text-center hidden sm:table-cell">
+                                    <td className="border border-gray-300 px-4 py-2 text-center hidden lg:table-cell">
                                         {new Date(project.createdAt).toLocaleDateString()}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">
                                         <div className="flex items-center justify-center gap-2">
                                             <button
-                                                onClick={() => router.push(`/dashboard/projects/edit/${project._id}`)}
                                                 className="text-blue-600 hover:text-blue-800 p-2"
+                                                onClick={() => router.push(`/dashboard/projects/edit/${project._id}`)}
                                             >
                                                 <Edit size={18} />
                                             </button>
@@ -132,6 +139,35 @@ const ListsProjects = () => {
                         )}
                     </tbody>
                 </table>
+            </div>
+
+            <div className="md:hidden">
+                {projects.length > 0 ? (
+                    projects.map((project) => (
+                        <div key={project._id} className="bg-gray-100 p-4 rounded-lg shadow mb-4">
+                            <h3 className="text-lg font-semibold">{project.title}</h3>
+                            <span className="text-xs text-gray-500">{new Date(project.createdAt).toLocaleDateString()}</span>
+                            <div className="flex justify-between items-center mt-2">
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        className="text-blue-600 hover:text-blue-800"
+                                        onClick={() => router.push(`/dashboard/projects/edit/${project._id}`)}
+                                    >
+                                        <Edit size={18} />
+                                    </button>
+                                    <button
+                                        className="text-red-600 hover:text-red-800"
+                                        onClick={() => handleDelete(project._id)}
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-center text-gray-500">No projects available.</p>
+                )}
             </div>
         </div>
     );

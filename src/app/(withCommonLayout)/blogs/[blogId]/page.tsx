@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import Loading from "@/components/shared/Loading";
 
 interface Blog {
     _id: string;
@@ -42,7 +43,7 @@ const SingleBlog = () => {
     }, [blogId]);
 
     if (loading) {
-        return <div className="text-center text-gray-600 py-20">Loading blog...</div>;
+        return <Loading />
     }
 
     if (error || !blog) {

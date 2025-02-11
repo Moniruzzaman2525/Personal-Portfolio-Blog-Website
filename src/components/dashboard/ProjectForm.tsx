@@ -8,6 +8,7 @@ import PPForm from "../form/PPForm";
 import PPInput from "../form/PPInput";
 import PPTextarea from "../form/PPTextarea";
 import { uploadImageToImgBB } from "@/utils/uploadImageToImgBB";
+import Loading from "../shared/Loading";
 
 const ProjectForm = () => {
     const [loading, setLoading] = useState(false);
@@ -55,7 +56,9 @@ const ProjectForm = () => {
             setLoading(false);
         }
     };
-
+    if (loading) {
+        return <Loading />
+    }
 
     return (
         <PPForm onSubmit={onAddProject} style={{ backgroundColor: "white", padding: "24px", borderRadius: "8px", boxShadow: "0px 2px 6px rgba(0,0,0,0.1)" }}>

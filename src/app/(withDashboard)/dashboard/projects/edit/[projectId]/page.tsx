@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -14,7 +15,6 @@ const EditProject = () => {
     const router = useRouter();
     const [project, setProject] = useState<FieldValues | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/projects/${projectId}`)
@@ -29,14 +29,12 @@ const EditProject = () => {
                 setLoading(false);
             })
             .catch((err) => {
-                setError(err.message);
                 setLoading(false);
             });
     }, [projectId]);
 
     const onUpdateProject = async (data: FieldValues) => {
         setLoading(true);
-        setError(null);
 
         try {
             const storedSession = localStorage.getItem("userSession");
@@ -74,8 +72,7 @@ const EditProject = () => {
             }
             router.push("/dashboard/projects");
 
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err) {
         } finally {
             setLoading(false);
         }
@@ -85,15 +82,11 @@ const EditProject = () => {
         return <div className="text-center py-10 text-gray-500">Loading project details...</div>;
     }
 
-    if (error) {
-        return <div className="text-center py-10 text-red-500">Error: {error}</div>;
-    }
 
 
     return (
         <PPForm onSubmit={onUpdateProject} defaultValues={project?.data} style={{ backgroundColor: "white", padding: "24px", borderRadius: "8px", boxShadow: "0px 2px 6px rgba(0,0,0,0.1)" }}>
             <h3 className="text-xl font-semibold mb-4">Edit Project</h3>
-            {error && <p className="text-red-500 text-center mb-2">{error}</p>}
 
             <PPInput required type="text" name="title" label="Project Title" placeholder="Enter project title" />
 
