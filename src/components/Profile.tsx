@@ -48,7 +48,7 @@ const HeroSection = () => {
                     <div className="mt-6 space-y-2">
                         <p className="text-gray-700 font-medium">📍 <span className="font-semibold">Location:</span> Sherpur, Dhaka, Bangladesh</p>
                         <p className="text-gray-700 font-medium">📧 <span className="font-semibold">Email:</span> <a href="mailto:monir@example.com" className="text-[#1e16df] hover:underline">web.moniruzzaman1@gmail.com</a></p>
-                        <p className="text-gray-700 font-medium">🌐 <span className="font-semibold">Website:</span> <a href="web.moniruzzaman1@gmail.com" className="text-[#1e16df] hover:underline">www.moniruzzaman.dev</a></p>
+                        <p className="text-gray-700 font-medium">🌐 <span className="font-semibold">Website:</span> <a href="web.moniruzzaman1@gmail.com" className="text-[#1e16df] hover:underline">https://personal-portfolio-blog-website-hazel.vercel.app</a></p>
                     </div>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
