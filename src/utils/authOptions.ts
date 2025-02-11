@@ -1,4 +1,5 @@
 
+
 import GitHubProvider from "next-auth/providers/github";
 import { NextAuthOptions } from "next-auth"
 import FacebookProvider from "next-auth/providers/facebook";
@@ -18,6 +19,9 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }),
   ],
+  pages: {
+    signIn: '/login'
+  },
   secret: process.env.NEXTAUTH_SECRET
 }
 

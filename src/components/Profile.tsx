@@ -1,4 +1,4 @@
-"use client"; // Ensure animations work in Next.js App Router
+"use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";

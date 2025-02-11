@@ -57,7 +57,7 @@ const SignupPage = () => {
                 <p className="text-gray-600 text-center mt-2">Sign up to get started</p>
 
                 {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-
+{/* 
                 <PPForm onSubmit={handleSignup} style={{ marginTop: "24px" }}>
                     <PPInput type="text" name="name" label="Full Name" required placeholder="Enter your name" />
                     <PPInput type="email" name="email" label="Email" required placeholder="Enter your email" />
@@ -72,7 +72,7 @@ const SignupPage = () => {
                     >
                         {loading ? <Loader2 className="animate-spin mx-auto" /> : "Sign Up"}
                     </motion.button>
-                </PPForm>
+                </PPForm> */}
 
                 <div className="flex items-center my-6">
                     <div className="flex-grow border-t border-gray-300"></div>

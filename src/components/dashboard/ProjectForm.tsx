@@ -17,24 +17,37 @@ const ProjectForm = () => {
     const onAddProject = async (data: FieldValues) => {
         setLoading(true);
         setError(null);
+
         try {
+            const storedSession = localStorage.getItem("userSession");
+            if (!storedSession) {
+                throw new Error("User session not found. Please log in again.");
+            }
+            const session = JSON.parse(storedSession);
+            const userEmail = session?.user?.email;
+
+            if (!userEmail) {
+                throw new Error("User email not found in session.");
+            }
+            data.user = userEmail;
             if (data.image) {
                 const imageUrl = await uploadImageToImgBB(data.image);
                 data.image = imageUrl;
-                const response = await fetch("http://localhost:5000/api/projects", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                });
-                const result = await response.json();
-                if (!response.ok) {
-                    throw new Error(result.message || "Failed to create project");
-                }
-                router.push("/projects");
             }
+            const response = await fetch("http://localhost:5000/api/projects", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            if (!response.ok) {
+                throw new Error(result.message || "Failed to create project");
+            }
+            router.push("/projects");
 
         } catch (err: any) {
             setError(err.message);
@@ -42,6 +55,7 @@ const ProjectForm = () => {
             setLoading(false);
         }
     };
+
 
     return (
         <PPForm onSubmit={onAddProject} style={{ backgroundColor: "white", padding: "24px", borderRadius: "8px", boxShadow: "0px 2px 6px rgba(0,0,0,0.1)" }}>

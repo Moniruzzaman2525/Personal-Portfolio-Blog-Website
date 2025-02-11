@@ -9,6 +9,7 @@ interface CommonLayoutProps {
 
 const CommonLayout = async ({ children }: CommonLayoutProps) => {
     const session = await getServerSession(authOptions);
+    
     return (
         <div>
             <Navbar session={session} />

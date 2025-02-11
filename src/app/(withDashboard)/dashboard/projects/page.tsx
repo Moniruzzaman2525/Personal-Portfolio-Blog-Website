@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -15,7 +16,23 @@ const ListsProjects = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/projects")
+        const storedSession = localStorage.getItem("userSession");
+        const session = storedSession ? JSON.parse(storedSession) : null;
+        const userEmail = session?.user?.email;
+
+        if (!userEmail) {
+            setError("User email not found. Please log in again.");
+            setLoading(false);
+            return;
+        }
+
+        fetch("http://localhost:5000/api/projects/user-projects", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "user-email": userEmail,
+            },
+        })
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch projects");

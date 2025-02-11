@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
@@ -16,7 +16,11 @@ type UserProps = {
 const Navbar = ({ session }: { session: UserProps | null }) => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
-
+    useEffect(() => {
+        if (session) {
+            localStorage.setItem("userSession", JSON.stringify(session));
+        }
+    }, [session]);
     const isActive = (path: string) =>
         pathname === path ? "text-[#1e16df] font-bold" : "text-gray-600 hover:text-[#1e16df] transition duration-300";
 

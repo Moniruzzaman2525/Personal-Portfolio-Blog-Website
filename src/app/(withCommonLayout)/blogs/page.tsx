@@ -2,8 +2,6 @@
 import SingleBlog from "@/components/SingleBlog";
 import { TBlog } from "@/types/blog";
 
-
-
 const BlogPage = async () => {
     const res = await fetch("http://localhost:5000/api/blogs");
     const data = await res.json();
