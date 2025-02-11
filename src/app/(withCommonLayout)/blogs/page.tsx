@@ -9,7 +9,7 @@ interface Blog {
     _id: string | number;
     title: string;
     image: string;
-    description: string;
+    content: string;
     createdAt: string;
 }
 
@@ -57,9 +57,9 @@ const BlogPage = () => {
                                         {blog.title}
                                     </h3>
                                     <p className="text-gray-600 text-sm mt-2 line-clamp-3">
-                                        {blog.description.length > 100
-                                            ? `${blog.description.substring(0, 100)}...`
-                                            : blog.description}
+                                        {blog.content.length > 100
+                                            ? `${blog.content.substring(0, 100)}...`
+                                            : blog.content}
                                     </p>
                                     <div className="mt-4">
                                         <Link

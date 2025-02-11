@@ -10,7 +10,7 @@ type TPHSelectForm = {
     }[];
     disabled?: boolean;
     mode?: "multiple" | undefined;
-    required?: boolean
+    required?: boolean;
 };
 
 export const PPSelect = ({ label, name, options, disabled, mode, required }: TPHSelectForm) => {
@@ -19,15 +19,25 @@ export const PPSelect = ({ label, name, options, disabled, mode, required }: TPH
             name={name}
             render={({ field, fieldState: { error } }) => (
                 <div className="mb-4">
-                    {label && <label htmlFor={name} className="block text-gray-700 font-medium mb-1">{label}</label>}
+                    {label && (
+                        <label htmlFor={name} className="block text-gray-700 font-medium mb-1">
+                            {label}
+                        </label>
+                    )}
                     <select
                         {...field}
                         id={name}
                         required={required}
                         multiple={mode === "multiple"}
+                        value={field.value ?? ""}
                         disabled={disabled}
-                        className={`w-full border p-2 rounded-md ${error ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                        className={`w-full border p-2 rounded-md ${error ? "border-red-500" : "border-gray-300"
+                            } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     >
+                        <option value="" disabled selected>
+                            Select an option
+                        </option>
+
                         {options.map((option) => (
                             <option key={option.value} value={option.value} disabled={option.disabled}>
                                 {option.label}

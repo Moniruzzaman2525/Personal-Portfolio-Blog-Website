@@ -37,7 +37,7 @@ const BlogForm = () => {
             if (!response.ok) {
                 throw new Error(result.message || "Failed to create blog");
             }
-            router.push("/blogs"); 
+            router.push("/blogs");
         } catch (err: any) {
             setError(err.message);
         } finally {
