@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
 
 
 type UserProps = {
@@ -35,9 +34,6 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                     <Link href="/projects" className={isActive("/projects")}>Projects</Link>
                     <Link href="/blogs" className={isActive("/blog")}>Blog</Link>
                     <Link href="/contact" className={isActive("/contact")}>Contact</Link>
-                    <Link href="/dashboard" className={isActive("/dashboard")}>Dashboard</Link>
-                    {session?.user ? <button onClick={() => signOut()} className={isActive("/login")}>Logout</button> :
-                        <Link href="/login" className={isActive("/login")}>Login</Link>}
                 </div>
 
                 <button
@@ -54,9 +50,6 @@ const Navbar = ({ session }: { session: UserProps | null }) => {
                     <Link href="/projects" className={`block py-2 ${isActive("/projects")}`} onClick={() => setIsOpen(false)}>Projects</Link>
                     <Link href="/blogs" className={`block py-2 ${isActive("/blog")}`} onClick={() => setIsOpen(false)}>Blog</Link>
                     <Link href="/contact" className={`block py-2 ${isActive("/contact")}`} onClick={() => setIsOpen(false)}>Contact</Link>
-                    <Link href="/dashboard" className={`block py-2 ${isActive("/dashboard")}`} onClick={() => setIsOpen(false)}>Dashboard</Link>
-                    {session?.user ? <button onClick={() => signOut()} className={isActive("/login")}>Logout</button> :
-                        <Link href="/login" className={`block py-2 ${isActive("/login")}`} onClick={() => setIsOpen(false)}>Login</Link>}
                 </div>
             )}
         </nav>

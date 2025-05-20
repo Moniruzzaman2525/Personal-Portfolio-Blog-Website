@@ -1,66 +1,51 @@
-"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client"
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import SkillCard from "@/components/skill-card"
 
-const skills = [
-    { name: "JavaScript", level: 90 },
-    { name: "TypeScript", level: 85 },
-    { name: "React.js", level: 85 },
-    { name: "Next.js", level: 80 },
-    { name: "Node.js", level: 90 },
-    { name: "Express.js", level: 85 },
-    { name: "MongoDB", level: 90 },
-    { name: "Tailwind CSS", level: 95 },
-];
 
-const SkillSection = () => {
+
+export default function SkillSection({ skills }: { skills: any[] }) {
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    }
+
     return (
-        <div className="relative w-full bg-white py-16 px-6 md:px-12 lg:px-24">
-            <div className=" mx-auto">
-                <motion.h2
+        <div className="min-h-screen bg-[#fbfbfe] py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-4xl font-extrabold text-gray-900 text-center"
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16"
                 >
-                    My Skills
-                </motion.h2>
+                    <h1 className="text-4xl font-extrabold text-gray-800 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                        My <span className="text-purple-600">Skills</span>
+                    </h1>
+                    <p className="mt-5 max-w-xl mx-auto text-xl text-gray-600">
+                        Technologies and programming languages I specialize in
+                    </p>
+                </motion.div>
 
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-gray-600 text-lg text-center mt-4"
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
                 >
-                    A showcase of my expertise in web development technologies.
-                </motion.p>
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {skills.map((skill, index) => (
-                        <motion.div
-                            key={skill.name}
-                            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: index * 0.1 }}
-                            className="bg-white p-6 rounded-xl shadow-lg"
-                        >
-                            <div className="flex justify-between items-center mb-2">
-                                <h3 className="text-lg font-semibold text-gray-800">{skill.name}</h3>
-                                <span className="text-gray-600 font-medium">{skill.level}%</span>
-                            </div>
-                            <div className="w-full bg-gray-200 h-2 rounded-full">
-                                <motion.div
-                                    initial={{ width: "0%" }}
-                                    animate={{ width: `${skill.level}%` }}
-                                    transition={{ duration: 1, ease: "easeOut" }}
-                                    className="h-2 rounded-full bg-[#3830cf]"
-                                ></motion.div>
-                            </div>
-                        </motion.div>
+                    {skills.map((skill) => (
+                        <SkillCard key={skill._id} skill={skill} />
                     ))}
-                </div>
+                </motion.div>
             </div>
         </div>
-    );
-};
-
-export default SkillSection;
+    )
+}

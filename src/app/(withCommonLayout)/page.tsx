@@ -1,13 +1,13 @@
 import Profile from "@/components/Profile";
-import SkillSection from "@/components/SkillSection";
 import ProjectsPage from "./projects/page";
 import ContactPage from "./contact/page";
+import MySkill from "@/components/MySkill";
 
 export default function Home() {
   return (
     <div>
       <Profile />
-      <SkillSection />
+      <MySkill />
       <ProjectsPage />
       <ContactPage />
     </div>
