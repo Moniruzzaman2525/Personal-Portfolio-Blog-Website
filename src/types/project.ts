@@ -1,8 +1,12 @@
 export type TProject = {
     _id: string;
     image: string;
-    title: string;
+    name: string;
     description: string;
     liveLink: string;
-    createdAt: Date
+    createdAt: string
+    status: string
+    startDate: string
+    endDate: string
+    updatedAt: string
 }

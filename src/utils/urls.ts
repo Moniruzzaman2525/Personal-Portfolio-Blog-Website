@@ -1,1 +1,1 @@
-export const urls = 'https://personal-portfolio-gamma-neon.vercel.app'
+export const urls = 'http://localhost:5000'

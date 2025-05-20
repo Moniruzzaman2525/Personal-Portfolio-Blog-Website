@@ -19,7 +19,7 @@ interface SkillCardProps {
 
 export default function SkillCard({ skill }: SkillCardProps) {
     const [isHovered, setIsHovered] = useState(false)
-    console.log(skill.image)
+
     const cardVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: {
