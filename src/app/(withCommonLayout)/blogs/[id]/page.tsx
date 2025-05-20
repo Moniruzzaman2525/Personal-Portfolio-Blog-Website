@@ -3,19 +3,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Loading from "@/components/shared/Loading";
+import { TBlog } from "@/types/blog";
 import { urls } from "@/utils/urls";
-import SingleProject from "@/components/SingleProject";
-import { TProject } from "@/types/project";
-const SingleProduct = () => {
+import SingleBlocksPage from "@/components/SingleBlocksPage";
+const SingleBlog = () => {
     const { id } = useParams();
-    const [blog, setBlog] = useState<TProject | null>(null);
+    const [blog, setBlog] = useState<TBlog | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (!id) return;
 
-        fetch(`${urls}/api/project/${id}`)
+        fetch(`${urls}/api/blogs/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Blog not found");
@@ -42,10 +42,9 @@ const SingleProduct = () => {
 
     return (
         <div>
-            <SingleProject project={blog} />
+            <SingleBlocksPage blog={blog} />
         </div>
     );
 };
 
-export default SingleProduct;
-
+export default SingleBlog;

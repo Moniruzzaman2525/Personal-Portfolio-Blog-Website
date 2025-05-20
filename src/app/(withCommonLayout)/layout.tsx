@@ -1,4 +1,5 @@
-import Footer from "@/components/shared/footer";
+
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { TCommonLayoutProps } from "@/types/props.type";
 import { authOptions } from "@/utils/authOptions";

@@ -18,7 +18,7 @@ const ProductCart = ({ project, index }: TProductCartProps) => {
             <div className="relative w-full h-48 overflow-hidden">
                 <Image
                     src={project?.image}
-                    alt={project?.title}
+                    alt={project?.name}
                     layout="fill"
                     objectFit="cover"
                     unoptimized={true}
@@ -26,7 +26,7 @@ const ProductCart = ({ project, index }: TProductCartProps) => {
                 />
             </div>
             <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-lg font-semibold text-gray-900 truncate">{project?.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 truncate">{project?.name}</h3>
                 <p className="text-gray-600 text-sm mt-2 line-clamp-3">{project?.description}</p>
                 <div className="mt-4 flex items-center justify-between">
                     <Link

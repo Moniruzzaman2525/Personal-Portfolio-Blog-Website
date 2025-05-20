@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Github, Linkedin, Mail, ExternalLink, Heart, Facebook } from "lucide-react"
+import { Github, Linkedin, Mail, Heart, Facebook } from "lucide-react"
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()
@@ -103,17 +103,7 @@ export default function Footer() {
                                         <Mail className="h-5 w-5 text-gray-500 mr-2 mt-0.5" />
                                         <span className="text-gray-600">web.moniruzzaman1@gmail.com</span>
                                     </li>
-                                    <li>
-                                        <a
-                                            href="https://calendly.com"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors"
-                                        >
-                                            Schedule a call
-                                            <ExternalLink className="h-3.5 w-3.5 ml-1" />
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </motion.div>
                         </div>
