@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/Navbar";
 import { TCommonLayoutProps } from "@/types/props.type";
 import { authOptions } from "@/utils/authOptions";
@@ -14,6 +15,7 @@ const CommonLayout = async ({ children }: TCommonLayoutProps) => {
             <div className="min-h-screen w-[90%] mt-20 mx-auto">
                 {children}
             </div>
+            <Footer />
         </div>
     );
 };

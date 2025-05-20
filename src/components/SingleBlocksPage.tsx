@@ -43,9 +43,9 @@ const SingleBlocksPage = ({ blog }: { blog: TBlog }) => {
 
     // Strip HTML to calculate reading time
     const stripHtml = (html: string) => {
-        const doc = new DOMParser().parseFromString(html, "text/html")
-        return doc.body.textContent || ""
-    }
+        return html.replace(/<[^>]*>/g, '');
+    };
+
 
     const readingTime = calculateReadingTime(stripHtml(blog.description))
 

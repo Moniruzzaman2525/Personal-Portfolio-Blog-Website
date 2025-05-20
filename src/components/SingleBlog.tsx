@@ -28,9 +28,9 @@ const SingleBlog = ({ blog, index }: SingleBlogProps) => {
     const [imageError, setImageError] = useState(false)
 
     const stripHtml = (html: string) => {
-        const doc = new DOMParser().parseFromString(html, "text/html")
-        return doc.body.textContent || ""
-    }
+        return html.replace(/<[^>]*>/g, '');
+    };
+
 
     const formatDate = (dateString: string) => {
         const options: Intl.DateTimeFormatOptions = {

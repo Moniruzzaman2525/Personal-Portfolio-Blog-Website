@@ -59,9 +59,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
     // Remove HTML tags from description
     const stripHtml = (html: string) => {
-        const doc = new DOMParser().parseFromString(html, "text/html")
-        return doc.body.textContent || ""
-    }
+        return html.replace(/<[^>]*>/g, '');
+    };
 
     // Get status color
     const getStatusColor = (status: string) => {
