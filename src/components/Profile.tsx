@@ -42,7 +42,7 @@ const HeroSection = () => {
                     </motion.p>
                     <p className="text-gray-600 mt-4 leading-relaxed">
                         Passionate about building scalable web applications and interactive user experiences.
-                        Proficient in modern technologies like <strong>Typescript, React, Next.js, Node.js, and MongoDB</strong>.
+                        Proficient in modern technologies like <strong>Javascript, Typescript, React.js, Redux.js, Next.js, Node.js, Express.js, MongoDB, PostgresSQL and Prisma</strong>.
                     </p>
 
                     <div className="mt-6 space-y-2">
@@ -50,6 +50,14 @@ const HeroSection = () => {
                         <p className="text-gray-700 font-medium">📧 <span className="font-semibold">Email:</span> <a href="mailto:monir@example.com" className="text-[#1e16df] hover:underline">web.moniruzzaman1@gmail.com</a></p>
                         <p className="text-gray-700 font-medium">🌐 <span className="font-semibold">Website:</span> <a href="web.moniruzzaman1@gmail.com" className="text-[#1e16df] hover:underline">https://personal-portfolio-blog-website-hazel.vercel.app</a></p>
                     </div>
+                    {/* Study Info */}
+                    <div className="mt-6 space-y-1">
+                        <p className="text-gray-700 font-medium">🎓 <span className="font-semibold">Education:</span></p>
+                        <p className="text-gray-600">B.A. (Honours) in Political Science</p>
+                        <p className="text-gray-600">National University, Bangladesh</p>
+                        <p className="text-gray-600">Passing Year: 2025</p>
+                    </div>
+
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}

@@ -55,8 +55,8 @@ const SingleBlog = ({ blog, index }: SingleBlogProps) => {
                         alt={blog.name}
                         fill
                         className="object-cover transition-transform duration-300 hover:scale-105"
-                        onError={() => setImageError(true)}
                         unoptimized
+                        onError={() => setImageError(true)}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gray-100">
