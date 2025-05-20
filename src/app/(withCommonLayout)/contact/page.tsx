@@ -14,7 +14,7 @@ const ContactPage = () => {
         message: "",
     });
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(null);
+    const [success, setSuccess] = useState("");
     const [error, setError] = useState(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,39 +23,29 @@ const ContactPage = () => {
 
     const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
-        setError(null);
-        setSuccess(null);
-        const storedSession = localStorage.getItem("userSession");
-        const session = storedSession ? JSON.parse(storedSession) : null;
-        const userEmail = session?.user?.email;
 
-        if (!userEmail) {
-            setLoading(false);
-            return;
+        const data = {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
         }
 
         try {
-            const response = await fetch(`${urls}/api/messages`, {
+            const response = await fetch(`${urls}/api/message`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    userEmail,
-                    name: formData.name,
-                    email: formData.email,
-                    subject: formData.subject,
-                    message: formData.message,
-                    user: userEmail
-                }),
+                body: JSON.stringify(data),
             });
 
             const result = await response.json();
-
+            console.log(result)
             if (!response.ok) {
                 throw new Error(result.message || "Failed to send message");
             }
+            setSuccess(result.message);
             setFormData({ name: "", email: "", subject: "", message: "" });
         } catch (err: any) {
             setError(err.message);

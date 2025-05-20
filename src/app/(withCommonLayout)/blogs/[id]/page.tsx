@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -13,24 +14,22 @@ const SingleBlog = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        if (!id) return;
-
-        fetch(`${urls}/api/blogs/${id}`)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error("Blog not found");
-                }
-                return res.json();
-            })
-            .then((data) => {
+        const fetchBlog = async () => {
+            try {
+                const res = await fetch(`${urls}/api/blocks/${id}`);
+                if (!res.ok) throw new Error("Blog not found");
+                const data = await res.json();
                 setBlog(data.data);
+            } catch (err: any) {
+                setError(err.message || "Failed to fetch");
+            } finally {
                 setLoading(false);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false);
-            });
+            }
+        };
+
+        if (id) fetchBlog();
     }, [id]);
+
 
     if (loading) {
         return <Loading />

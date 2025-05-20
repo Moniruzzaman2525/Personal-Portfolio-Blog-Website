@@ -1,1 +1,1 @@
-export const urls = 'http://localhost:5000'
+export const urls = 'https://dashboard-server-dun-ten.vercel.app'
