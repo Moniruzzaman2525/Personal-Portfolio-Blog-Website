@@ -3,8 +3,9 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, ExternalLink, Eye } from "lucide-react"
+import { Calendar, ExternalLink, Eye, ImageIcon } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
 
 interface Project {
@@ -16,6 +17,7 @@ interface Project {
     endDate: string | null
     owner: string
     liveLink: string
+    image?: string // Added image field
     createdAt: string
     updatedAt: string
     __v: number
@@ -27,6 +29,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false)
+    const [imageError, setImageError] = useState(false)
 
     const cardVariants = {
         hidden: { opacity: 0, y: 50 },
@@ -82,10 +85,39 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             onHoverEnd={() => setIsHovered(false)}
             className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm h-full flex flex-col"
         >
+            {/* Image Section */}
+            <div className="relative w-full h-48 bg-gray-100">
+                {project.image && !imageError ? (
+                    <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={`${project.name} project thumbnail`}
+                        fill
+                        className="object-cover"
+                        onError={() => setImageError(true)}
+                        unoptimized
+                    />
+                ) : (
+                    <div className="flex items-center justify-center h-full w-full bg-purple-50">
+                        <div className="flex flex-col items-center text-purple-300">
+                            <ImageIcon className="h-12 w-12 mb-2" />
+                            <span className="text-sm">No image available</span>
+                        </div>
+                    </div>
+                )}
+
+                {/* Overlay gradient on hover */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={isHovered ? { opacity: 0.3 } : { opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-gradient-to-t from-purple-600 to-transparent"
+                />
+            </div>
+
             <div className="p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-start mb-4">
                     <h3 className="text-2xl font-bold text-gray-800">{project.name}</h3>
-                    <Badge className={`${getStatusColor(project.status)} border-0`}>{project.status}</Badge>
+                    <Badge className={`${getStatusColor(project.status)} border-0 w-[30%]`}>{project.status}</Badge>
                 </div>
 
                 <div className="flex items-center text-gray-500 text-sm mb-4">
@@ -94,7 +126,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 </div>
 
                 <div className="mb-6 flex-grow">
-                    <p className="text-gray-600">{stripHtml(project.description)}</p>
+                    <p className="text-gray-600 line-clamp-3">{stripHtml(project.description)}</p>
                 </div>
 
                 <motion.div
