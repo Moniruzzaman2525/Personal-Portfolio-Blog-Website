@@ -47,12 +47,12 @@ const SingleProject = ({ project }: TSingleProjectProps) => {
                     className="absolute inset-0"
                 >
                     <Image
-                        src={project.image}
+                        src={project.image || "/placeholder.svg?height=500&width=800"}
                         alt={project.name}
-                        fill
-                        priority
-                        className="object-cover brightness-75"
-                        unoptimized
+                        layout="fill"
+                        objectFit="cover"
+                        className="brightness-90"
+                        unoptimized={true}
                     />
                 </motion.div>
                 <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-6">

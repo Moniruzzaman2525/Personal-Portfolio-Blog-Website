@@ -17,3 +17,20 @@ export const getBlocks = async () => {
         return Error(error);
     }
 }
+export const getSingleBlock = async (id: any) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blocks/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            next: {
+                tags: ["blocks"],
+            },
+        });
+        const result = await res.json();
+        return result;
+    } catch (error: any) {
+        return Error(error);
+    }
+}
